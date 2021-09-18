@@ -12,9 +12,13 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
+
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -32,5 +36,9 @@
                 {{ $slot }}
             </main>
         </div>
+
+        <!-- Scripts -->
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
+
     </body>
 </html>
