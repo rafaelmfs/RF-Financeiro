@@ -10,7 +10,8 @@ class Category extends Model
     use HasFactory;
     protected $table = 'categories';
 
-    public function FinancialAccount(){
-        return $this->belongsTo('financial_transactions', 'categories', 'id');
+    public function TypeMovement(){
+        return $this->belongsTo('type_movements', 'id', 'typeMovement');
     }
+
 }
