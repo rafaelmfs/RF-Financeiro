@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\FinancialAccount;
+use App\Models\FinancialTransation;
 use App\Models\user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +22,16 @@ class UserController extends Controller
         //
         $user = Auth::user();
         return view('dashboard', [
-            'user' => $user
+            'user' => $user,
+            'transactions' => $this->latestTransactions()
         ]);
+    }
+
+    public function latestTransactions(){
+
+        $user = Auth::user();
+        $transactions = FinancialTransation::where('user', $user->id)->get();
+        return $transactions;
     }
 
     /**

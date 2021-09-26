@@ -45,4 +45,10 @@ class User extends Authenticatable
     public function FinancialAccount(){
         return $this->hasMany('financial_accounts', 'user', 'id');
     }
+
+    public function FinancialTransation(){
+        return $this->hasMany('financial_transactions', 'user', 'id');
+    }
+
+
 }

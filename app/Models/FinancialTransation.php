@@ -12,12 +12,18 @@ class FinancialTransation extends Model
 
 
     public function FinancialAccount(){
-        return $this->belongsTo('financial_accounts', 'id', 'financial-account');
+        return $this->belongsTo('FinancialAccount', 'id', 'financial-account');
     }
 
     public function TypeMovement(){
         $this->hasOne('type_movements', 'id', 'type-movement');
     }
+
+
+    public function User(){
+        return $this->belongsTo('users', 'id', 'user');
+    }
+
 
 
 }
