@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         //
         $user = Auth::user();
-        return view('dashboard', [
+        return view('app.dashboard', [
             'user' => $user,
             'transactions' => $this->latestTransactions()
         ]);

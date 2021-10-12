@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <h2 class="p-4">Olá {{$user->name}}</h2>
@@ -27,7 +27,7 @@
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col">{{$transaction->date}}</th>
-                                <th scope="col">{{$transaction->FinancialAccount()->name}}</th>
+                                <th scope="col"></th>
                                 <th scope="col">{{$transaction->category}}</th>
                                 <th scope="col">{{$transaction->Descricao}}</th>
                                 <th scope="col">{{$transaction->value}}</th>

@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
-});
+    return view('site.home');
+})->name('site.home');
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
