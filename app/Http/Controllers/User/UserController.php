@@ -23,16 +23,9 @@ class UserController extends Controller
         $user = Auth::user();
         return view('app.dashboard', [
             'user' => $user,
-            'transactions' => $this->latestTransactions()
         ]);
     }
 
-    public function latestTransactions(){
-
-        $user = Auth::user();
-        $transactions = FinancialTransation::where('user', $user->id)->get();
-        return $transactions;
-    }
 
     /**
      * Show the form for creating a new resource.

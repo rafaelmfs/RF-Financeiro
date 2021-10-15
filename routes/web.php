@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Finance\FinancialTransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,5 +20,10 @@ Route::get('/', function () {
 })->name('site.home');
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/adicionar', [FinancialTransactionController::class, 'add'])->middleware(['auth'])->name('adicionar');
+Route::get('/listar', [FinancialTransactionController::class, 'list'])->middleware(['auth'])->name('listar');
+Route::get('/relatorio', [FinancialTransactionController::class, 'report'])->middleware(['auth'])->name('relatorio');
+
+
 
 require __DIR__.'/auth.php';
