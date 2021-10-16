@@ -16,7 +16,7 @@ class CreateFinancialAccountsTable extends Migration
         Schema::create('financial_accounts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user');
-            $table->string('name');
+            $table->string('name', 80);
             $table->timestamps();
 
             $table->foreign('user')->references('id')->on('users')->onDelete('CASCADE');

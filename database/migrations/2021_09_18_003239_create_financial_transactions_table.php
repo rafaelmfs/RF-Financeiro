@@ -16,18 +16,19 @@ class CreateFinancialTransactionsTable extends Migration
         Schema::create('financial_transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user');
-            $table->unsignedBigInteger('type-movement');
-            $table->unsignedBigInteger('financial-account');
+            $table->string('name', 80);
+            $table->unsignedBigInteger('type_movement');
+            $table->unsignedBigInteger('financial_account');
             $table->unsignedBigInteger('category');
             $table->double('value');
             $table->date('date');
             $table->timestamps();
-            $table->string('Descricao');
+            $table->text('description');
             $table->boolean('state');
 
             $table->foreign('user')->references('id')->on('users')->onDelete('CASCADE');
-            $table->foreign('type-movement')->references('id')->on('type_movements')->onDelete('RESTRICT');
-            $table->foreign('financial-account')->references('id')->on('financial_accounts')->onDelete('RESTRICT');
+            $table->foreign('type_movement')->references('id')->on('type_movements')->onDelete('RESTRICT');
+            $table->foreign('financial_account')->references('id')->on('financial_accounts')->onDelete('RESTRICT');
             $table->foreign('category')->references('id')->on('categories')->onDelete('RESTRICT');
         });
     }
