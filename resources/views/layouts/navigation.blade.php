@@ -21,31 +21,30 @@
     </label>
 
     <div class="sidebar">
-        <div class="sidebar-menu">
-            <span class="fas
-            fa-cog"></span>
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-nav-link>
-        </div>
-        <div class="sidebar-menu">
-            <span class="fas fa-chart-line"></span>
-                <x-nav-link :href="route('adicionar')" :active="request()->routeIs('adicionar')">
-                    {{ __('Adicionar') }}
-                </x-nav-link>
-        </div>
-        <div class="sidebar-menu">
-            <span class="fas fa-list-alt"></span>
-            <x-nav-link {{-- :href="route('dashboard')" :active="request()->routeIs('dashboard')" --}}>
-                {{ __('Consultar') }}
-            </x-nav-link>
-        </div>
-        <div class="sidebar-menu">
-            <span class="fas fa-clipboard-list"></span>
-            <x-nav-link {{-- :href="route('dashboard')" :active="request()->routeIs('dashboard')" --}}>
-                {{ __('Relatório') }}
-            </x-nav-link>
-        </div>
+        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <div class="sidebar-menu">
+                <span class="fas fa-chart-line"></span>
+                    {{ __('Dashboard') }}
+            </div>
+        </x-nav-link>
+        <x-nav-link :href="route('adicionar')" :active="request()->routeIs('adicionar')">
+            <div class="sidebar-menu">
+                <span class="fas fa-plus"></span>
+                        {{ __('Adicionar') }}
+            </div>
+        </x-nav-link>
+        <x-nav-link {{-- :href="route('dashboard')" :active="request()->routeIs('dashboard')" --}}>
+            <div class="sidebar-menu">
+                <span class="fas fa-list-alt"></span>
+                    {{ __('Consultar') }}
+            </div>
+        </x-nav-link>
+        <x-nav-link {{-- :href="route('dashboard')" :active="request()->routeIs('dashboard')" --}}>
+            <div class="sidebar-menu">
+                <span class="fas fa-file-alt"></span>
+                    {{ __('Relatório') }}
+            </div>
+        </x-nav-link>
     </div>
 
 </nav>

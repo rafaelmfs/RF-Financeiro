@@ -62,7 +62,7 @@
 .sidebar-menu {
     display: flex;
     align-items: center;
-    padding: 15px 20px;
+    padding: 5% 15px;
     width: 100%;
     cursor: pointer;
     transition: all 0.1s ease-in-out;
@@ -139,10 +139,15 @@
     color: #fff;
 }
 
+div.card{
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+}
+
 .detail {
     grid-area: detail;
     overflow-x: auto;
-    padding: 5% 8px;
+    padding: 4% 8px;
 }
 
 .info {
@@ -202,14 +207,21 @@
 }
 
 .detail table th {
-    background-color: #f4f4fb;
+    background-color: #9cdb9b52;
+    border-right: solid #155c121a 1px;
+    font-size: 14px;
+
+}
+
+.detail table td{
+    font-size: 11px;
+
 }
 
 .detail table th, .detail table td {
-    padding: 0.8rem 0.2rem;
-    text-align: left;
+    padding: 0.4rem;
+    text-align: center;
     min-width: 120px;
-    font-size: 14px;
 }
 
 .detail table tr:hover {
@@ -222,26 +234,16 @@
     min-width: 150px;
 }
 
-.status {
-    padding: 0.3rem 1rem;
-    border-radius: 30px;
-    font-weight: 400;
-    letter-spacing: 1;
-    font-size: 0.8rem;
-}
 
 .andamento {
-    background-color: #fff2d7;
     color: #ffa705;
 }
 
 .confirmado {
-    background-color: #dff0e2;
     color: #37aa38;
 }
 
 .pendente {
-    background-color: #f1dede;
     color: #691414
 }
 
@@ -270,35 +272,6 @@
 .customer-date {
     text-align: right;
     color: #9092a9;
-}
-
-
-p.question{
-    color: hsl(237, 12%, 33%);
-
-}
-
-p.answer{
-    color: hsl(240, 6%, 50%);
-    display: none;
-    padding: 2px 5px;
-}
-
-p.answer, p.question{
-    font-size: 14px;
-
-}
-
-p.question::after{
-    content: url(../imagens/chevron-right.svg);
-    float: right;
-    transform: rotate(180deg);
-    margin-left: 2px;
-}
-
-p.question:hover{
-    color: hsl(14, 88%, 65%);
-    cursor: pointer;
 }
 
 .active{
