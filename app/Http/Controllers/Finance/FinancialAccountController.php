@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Finance;
 
 use App\Http\Controllers\Controller;
 use App\Models\FinancialAccount;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,12 +18,18 @@ class FinancialAccountController extends Controller
 
     public function store(Request $request){
         $account = new FinancialAccount();
-        $account->user = Auth::user()->id;
-        $account->name = $request->name;
+        try{
+            $account->user = Auth::user()->id;
+            $account->name = ucwords(strtolower($request->name));
 
-        $account->save();
+            $account->save();
 
-        return redirect()->route('adicionar.conta');
+            return view('app.adicionarConta');
+
+        }catch(Exception $err){
+            //
+        }
+
 
     }
 }

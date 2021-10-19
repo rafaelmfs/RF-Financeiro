@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\FinancialAccount;
 use App\Models\FinancialTransation;
 use App\Models\TypeMovements;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,18 +30,23 @@ class FinancialTransactionController extends Controller
 
     public function store(Request $request){
         $transaction = New FinancialTransation();
+        try{
+            $transaction->name = ucwords(strtolower($request->name));
+            $transaction->type_movement = $request->type;
+            $transaction->financial_account = $request->account;
+            $transaction->category = $request->category;
+            $transaction->value = $request->valueTransaction;
+            $transaction->date = $request->dueDate;
+            $transaction->description = $request->description;
+            $transaction->user = Auth::user()->id;
+            $transaction->state = empty($request->state);
 
-        $transaction->name = $request->name;
-        $transaction->type_movement = $request->type;
-        $transaction->financial_account = $request->account;
-        $transaction->category = $request->category;
-        $transaction->value = $request->valueTransaction;
-        $transaction->date = $request->dueDate;
-        $transaction->description = $request->description;
-        $transaction->user = Auth::user()->id;
-        $transaction->state = empty($request->state);
+            $transaction->save();
 
-        $transaction->save();
+        }catch(Exception $err){
+            //
+        }
+
 
         return redirect()->route('listar');
 
@@ -56,5 +62,6 @@ class FinancialTransactionController extends Controller
         return view('app.relatorios');
 
     }
+
 
 }

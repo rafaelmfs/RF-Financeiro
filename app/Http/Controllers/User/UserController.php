@@ -20,9 +20,20 @@ class UserController extends Controller
     public function index()
     {
         //
+        $movements = new FinancialTransation();
         $user = Auth::user();
+        $credit = $movements->valueTotal(1, $user->id);
+        $debt = $movements->valueTotal(2, $user->id);
+        $creditTotal = count(FinancialTransation::where('user', $user->id)->where('type_movement', 1)->get());
+        $debtTotal = count(FinancialTransation::where('user', $user->id)->where('type_movement', 2)->get());
         return view('app.dashboard', [
             'user' => $user,
+            'creditoValor' => $credit,
+            'creditoTotal' => $creditTotal,
+            'debitoValor' => $debt,
+            'debitoTotal' => $debtTotal,
+            'total' => ($credit - $debt),
+            'movimentacoes' => $movements->where('user', $user->id)->get()
         ]);
     }
 

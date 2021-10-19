@@ -3,12 +3,21 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Consultar') }}
         </h2>
-        <div class="p-4">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                </div>
+    </x-slot>
+    <div class="p-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="container my-4">
+
+            </div>
+            <div class="container border bg-light rounded-3 p-5">
+
+
             </div>
         </div>
-    </x-slot>
+    </div>
+
+    <script src="{{ asset('js/forms.js')}}"></script>
+
 
 </x-app-layout>
+

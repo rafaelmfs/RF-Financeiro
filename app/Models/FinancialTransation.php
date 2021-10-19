@@ -11,19 +11,28 @@ class FinancialTransation extends Model
     protected $table = 'financial_transactions';
 
 
-    public function FinancialAccount(){
+    public function valueTotal($type, $id){
+        $transactions = FinancialTransation::where('type_movement', $type)->where('user', $id)->get();
+        $totals = 0;
+        foreach($transactions as $transaction){
+            $totals += $transaction->value;
+        }
+
+        return $totals;
+
+    }
+
+    public function financialAccount(){
         return $this->belongsTo('FinancialAccount', 'id', 'financial-account');
     }
 
-    public function TypeMovement(){
-        $this->hasOne('type_movements', 'id', 'type-movement');
+    public function typeMovement(){
+        $this->hasOne('type_movements', 'id', 'type_movement');
     }
 
 
-    public function User(){
+    public function user(){
         return $this->belongsTo('users', 'id', 'user');
     }
-
-
 
 }
