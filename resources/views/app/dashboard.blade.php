@@ -25,7 +25,7 @@
                     </h2>
                 </div>
                 <div class ="info-imagem">
-                    <i class=" mx-2 fas  fa-money-check-alt"></i>
+                    <i class=" mx-2 fas fa-donate"></i>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                     </h2>
                 </div>
                 <div class ="info-imagem">
-                    <i class="mx-2 fas fa-boxes"></i>
+                    <i class="mx-2 fas fa-money-check-alt"></i>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
                     </h2>
                 </div>
                 <div class ="info-imagem">
-                    <i class="mx-2 fas fa-shipping-fast"></i>
+                    <i class="mx-2 fas fa-balance-scale"></i>
                 </div>
             </div>
         </div>

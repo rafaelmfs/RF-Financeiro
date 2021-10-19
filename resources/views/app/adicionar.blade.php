@@ -72,7 +72,7 @@
                         <label for="description" class="form-label">Descrição:</label>
                         <textarea class="form-control" id="" name="description" rows="3"></textarea>
                     </div>
-                    <div class="form-check mb-3">
+                    <div class="form-check mb-3 status">
                         <label for="state" class="form-label">Status: </label>
                         <select class="form-select" name="state">
                             <option selected value="andamento">Andamento</option>

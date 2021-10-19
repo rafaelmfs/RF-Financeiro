@@ -39,7 +39,7 @@ class FinancialTransactionController extends Controller
             $transaction->date = $request->dueDate;
             $transaction->description = $request->description;
             $transaction->user = Auth::user()->id;
-            $transaction->state = empty($request->state);
+            $transaction->state = $request->state;
 
             $transaction->save();
 
