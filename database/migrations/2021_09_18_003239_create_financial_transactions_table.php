@@ -24,7 +24,7 @@ class CreateFinancialTransactionsTable extends Migration
             $table->date('date');
             $table->timestamps();
             $table->text('description');
-            $table->boolean('state');
+            $table->string('state', 20);
 
             $table->foreign('user')->references('id')->on('users')->onDelete('CASCADE');
             $table->foreign('type_movement')->references('id')->on('type_movements')->onDelete('RESTRICT');
