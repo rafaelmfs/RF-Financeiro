@@ -31,7 +31,7 @@ class FinancialTransactionController extends Controller
     public function store(Request $request){
         $transaction = New FinancialTransation();
         try{
-            $transaction->name = ucwords(strtolower($request->name));
+            $transaction->name = ucwords(mb_strtolower($request->name, $encoding = mb_internal_encoding()));
             $transaction->type_movement = $request->type;
             $transaction->financial_account = $request->account;
             $transaction->category = $request->category;
@@ -43,12 +43,12 @@ class FinancialTransactionController extends Controller
 
             $transaction->save();
 
+            return redirect()->route('listar');
         }catch(Exception $err){
             //
         }
 
 
-        return redirect()->route('listar');
 
 
 

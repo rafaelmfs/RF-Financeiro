@@ -20,7 +20,7 @@ class FinancialAccountController extends Controller
         $account = new FinancialAccount();
         try{
             $account->user = Auth::user()->id;
-            $account->name = ucwords(strtolower($request->name));
+            $account->name = ucwords(mb_strtolower($request->name, $encoding = mb_internal_encoding()));
 
             $account->save();
 

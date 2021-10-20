@@ -24,14 +24,15 @@ class CategoriesController extends Controller
         try{
             $category->typeMovement = $request->type;
             $category->user = Auth::user()->id;
-            $category->name = ucwords(strtolower($request->name));
+            $category->name = ucwords(mb_strtolower($request->name, $encoding = mb_internal_encoding()));
             $category->save();
+
+            return redirect()->route('adicionar.categoria');
 
         }catch(Exception $err){
 
         }
 
-        return redirect()->route('adicionar.categoria');
 
     }
 }

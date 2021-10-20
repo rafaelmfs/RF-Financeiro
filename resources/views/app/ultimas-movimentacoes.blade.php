@@ -5,7 +5,6 @@
     </div>
     <table class="table">
         <tr>
-            <th class="table-head">ID #</th>
             <th class="table-head">Nome</th>
             <th class="table-head">Categoria</th>
             <th class="table-head">Conta</th>
@@ -20,7 +19,6 @@
             @endphp
 
             <tr>
-                <td>{{$movimentacao->id}}</td>
                 <td>{{$movimentacao->name}}</td>
                 <td>{{$movimentacao->category}}</td>
                 <td>{{$movimentacao->financial_account}}</td>

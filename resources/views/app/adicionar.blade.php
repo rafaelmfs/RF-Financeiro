@@ -75,7 +75,6 @@
                     <div class="mb-3 status">
                         <label for="state" class="form-label">Status: </label>
                         <select class="form-select" name="state">
-                            <option selected value="andamento">Andamento</option>
                             <option value="confirmado">Confirmado</option>
                             <option value="pendente">Pendente</option>
                         </select>

@@ -8,7 +8,7 @@
             @php
                 $nome = explode(" ", Auth::user()->name);
                 foreach($nome as $i => $palavra){
-                    $palavra = ucwords(strtolower($palavra));
+                    $palavra = ucwords(mb_strtolower($palavra, $encoding = mb_internal_encoding()));
                     $nome[$i] = $palavra;
                 }
             @endphp
