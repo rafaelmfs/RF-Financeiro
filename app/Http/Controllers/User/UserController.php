@@ -24,19 +24,19 @@ class UserController extends Controller
         //
         $movements = new FinancialTransation();
         $user = Auth::user();
-        $credit = $movements->valueTotal(1, $user->id);
-        $debt = $movements->valueTotal(2, $user->id);
-        $creditTotal = count(FinancialTransation::where('user', $user->id)->where('type_movement', 1)->get());
-        $debtTotal = count(FinancialTransation::where('user', $user->id)->where('type_movement', 2)->get());
+        $valueCredit = $movements->valueTotal($movements->where('user', $user->id)->where('type_movement', 1)->get());
+        $valueDebt = $movements->valueTotal($movements->where('user', $user->id)->where('type_movement', 2)->get());
+        $amountCredit = count($movements->where('user', $user->id)->where('type_movement', 1)->get());
+        $amountDebt = count($movements->where('user', $user->id)->where('type_movement', 2)->get());
         $lastMovements = $movements->formattedMoves($user);
 
         return view('app.dashboard', [
             'user' => $user,
-            'creditoValor' => $credit,
-            'creditoTotal' => $creditTotal,
-            'debitoValor' => $debt,
-            'debitoTotal' => $debtTotal,
-            'total' => ($credit - $debt),
+            'creditoValor' => $valueCredit,
+            'creditoTotal' => $amountCredit,
+            'debitoValor' => $valueDebt,
+            'debitoTotal' => $amountDebt,
+            'total' => ($valueCredit - $valueDebt),
             'movimentacoes' => $lastMovements
         ]);
     }
