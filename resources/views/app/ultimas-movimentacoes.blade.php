@@ -9,32 +9,17 @@
             <th class="table-head">Categoria</th>
             <th class="table-head">Conta</th>
             <th class="table-head">Valor</th>
-            <th class="table-head">Vencimento</th>
-            <th class="table-head">Atualização</th>
-            <th class="table-head">Status</th>
+            <th class="table-head">Tipo</th>
+
         </tr>
-        @foreach ($movimentacoes as $movimentacao)
-            @php
-                $cont = 0;
-            @endphp
-
-            <tr>
-                <td>{{$movimentacao->name}}</td>
-                <td>{{$movimentacao->category}}</td>
-                <td>{{$movimentacao->financial_account}}</td>
-                <td>R$ {{str_replace('.', ',', strval($movimentacao->value) )}}</td>
-                <td>{{str_replace('-', '/', strval($movimentacao->date) )}}</td>
-                <td>{{str_replace('-', '/', strval($movimentacao->updated_at) )}}</td>
-                <td><span class="status {{$movimentacao->state}}">
-                    <i class="fas fa-circle"> {{ucwords($movimentacao->state)}}</i></span></td>
-            </tr>
-
-            @php
-                if($cont == 9){
-                    break;
-                }
-                $cont++;
-            @endphp
-        @endforeach
+            @for ($cont = (count($movimentacoes)-1); $cont>=0 ; $cont --)
+                <tr>
+                    <td>{{$movimentacoes[$cont]->name}}</td>
+                    <td>{{$movimentacoes[$cont]->category}}</td>
+                    <td>{{$movimentacoes[$cont]->financial_account}}</td>
+                    <td>R$ {{str_replace('.', ',', strval($movimentacoes[$cont]->value) )}}</td>
+                    <td>{{($movimentacoes[$cont]->type_movement)}}</td>
+                </tr>
+            @endfor
     </table>
 </div>

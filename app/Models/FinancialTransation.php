@@ -22,6 +22,21 @@ class FinancialTransation extends Model
 
     }
 
+    public function formattedMoves($user){
+
+        $movements = FinancialTransation::where('user', $user->id)->get();
+
+        foreach($movements as $movement){
+            $movement->category = Category::find($movement->category)->name;
+            $movement->financial_account = FinancialAccount::find($movement->financial_account)->name;
+            $movement->type_movement = TypeMovements::find($movement->type_movement)->name;
+        }
+
+        return $movements;
+
+    }
+
+
     public function financialAccount(){
         return $this->belongsTo('FinancialAccount', 'id', 'financial-account');
     }

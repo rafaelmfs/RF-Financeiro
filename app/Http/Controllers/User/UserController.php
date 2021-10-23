@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\FinancialAccount;
 use App\Models\FinancialTransation;
+use App\Models\TypeMovements;
 use App\Models\user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +28,8 @@ class UserController extends Controller
         $debt = $movements->valueTotal(2, $user->id);
         $creditTotal = count(FinancialTransation::where('user', $user->id)->where('type_movement', 1)->get());
         $debtTotal = count(FinancialTransation::where('user', $user->id)->where('type_movement', 2)->get());
+        $lastMovements = $movements->formattedMoves($user);
+
         return view('app.dashboard', [
             'user' => $user,
             'creditoValor' => $credit,
@@ -33,7 +37,7 @@ class UserController extends Controller
             'debitoValor' => $debt,
             'debitoTotal' => $debtTotal,
             'total' => ($credit - $debt),
-            'movimentacoes' => $movements->where('user', $user->id)->get()
+            'movimentacoes' => $lastMovements
         ]);
     }
 
