@@ -23,14 +23,13 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/bootstrap.js') }}"></script>
-        <script src="{{ asset('js/navToggle.js') }}"></script>
 
 
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
-                <!-- Page Content -->
+            <!-- Page Content -->
             <main class="main-content">
                 {{ $slot }}
             </main>

@@ -47,15 +47,17 @@ class FinancialTransactionController extends Controller
         }catch(Exception $err){
             //
         }
-
-
-
-
-
     }
 
     public function list(){
-        return view('app.consultar');
+        $user = Auth::user();
+        $categories = Category::where('user', $user->id)->get();
+        $account = FinancialAccount::where('user', $user->id)->get();
+        // $transaction = FinancialTransation::where('id', $user->id)->get();
+        return view('app.consultar', [
+            'categorias' => $categories,
+            'contas' => $account
+        ]);
     }
 
     public function report(){

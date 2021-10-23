@@ -1,3 +1,11 @@
+@keyframes balance{
+    0%{margin-left: 5px;}
+    25%{margin-left: 0; margin-right: 5px;}
+    50%{margin-right: 0; margin-left: 5px;}
+    75%{margin-left: 0; margin-right: 5px;}
+    100%{margin-left: 0; margin-right: 0;}
+}
+
 /************ Layout do app *****************************/
 .nav-bar {
     display: flex;
@@ -102,7 +110,7 @@
 
 /* ------------------------- */
 .main-content {
-    min-height: 100%;
+    min-height: 100vh;
     padding:  4rem 1rem 2rem 14rem;
     color: #201f2b;
 }
@@ -286,6 +294,25 @@ div.card{
     font-weight: bold;
     color: hsl(238, 29%, 16%);
 }
+
+#type, #timeCourse, #category, #account{
+    display: none;
+}
+
+#timeCourse{
+    visibility:hidden;
+
+}
+
+.text-error{
+    display: none;
+}
+
+.error{
+    border: 1px solid red;
+    animation: balance 500ms;
+}
+
 
 p.active::after{
     content: url(../imagens/chevron-down.svg);

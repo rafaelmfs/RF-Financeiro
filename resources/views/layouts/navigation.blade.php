@@ -9,7 +9,6 @@
             </div>
         </header>
         <div class="profile">
-            <span class="fas fa-search"></span>
             @include('components.menu-logout')
         </div>
     </nav>
@@ -33,7 +32,7 @@
                         {{ __('Adicionar') }}
             </div>
         </x-nav-link>
-        <x-nav-link {{-- :href="route('dashboard')" :active="request()->routeIs('dashboard')" --}}>
+        <x-nav-link :href="route('listar')" :active="request()->routeIs('listar')">
             <div class="sidebar-menu">
                 <span class="fas fa-list-alt"></span>
                     {{ __('Consultar') }}
