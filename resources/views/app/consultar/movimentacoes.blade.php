@@ -32,15 +32,15 @@
                     @endforeach
                     <tr class="">
                         <td class="" colspan="2">Crédito</td>
-                        <td class="" colspan="5">R${{$credito}}</td>
+                        <td class="" colspan="5">R$ {{$credito}}</td>
                     </tr>
                     <tr class="">
                        <td class="" colspan="2">Débito</td>
-                       <td class="" colspan="5">R$-{{$debito}}</td>
+                       <td class="" colspan="5">R$ -{{$debito}}</td>
                     </tr>
                     <tr class="">
                         <td class="" colspan="2">Total</td>
-                        <td class="" colspan="5">R${{$total}}</td>
+                        <td class="" colspan="5">R$ {{$total}}</td>
 
                     </tr>
                 </table>

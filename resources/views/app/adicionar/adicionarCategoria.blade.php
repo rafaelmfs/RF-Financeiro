@@ -30,7 +30,7 @@
                     </select>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <a href="javascript:history.back()"  class="btn btn-outline-secondary px-5 me-2">Voltar </a>
+                    <a href="javascript:history.back()" class="btn btn-outline-secondary px-5 me-2">Voltar </a>
                     <button type="submit" class="btn btn-success px-5 ms-2">Salvar</button>
                 </div>
             </form>
