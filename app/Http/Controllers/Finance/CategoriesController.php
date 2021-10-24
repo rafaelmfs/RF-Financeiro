@@ -14,7 +14,7 @@ class CategoriesController extends Controller
     //
     public function add(){
         $type = TypeMovements::all();
-        return view('app.adicionarCategoria', [
+        return view('app.adicionar.adicionarCategoria', [
             'tipos' => $type
         ]);
     }
@@ -32,7 +32,17 @@ class CategoriesController extends Controller
         }catch(Exception $err){
 
         }
+    }
 
+    public function list(){
+        //
+        $user = Auth::user();
+        $categoriesFormated = new Category();
+        $categories = Category::where('user', $user->id)->get();
+
+        return view("app.consultar.categorias", [
+            'categorias' => $categoriesFormated->formatTypeName($categories)
+        ]);
 
     }
 }

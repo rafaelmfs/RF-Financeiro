@@ -96,7 +96,6 @@
     </div>
 
 
-    <script src="{{ asset('js/forms.js')}}"></script>
 
 
 </x-app-layout>

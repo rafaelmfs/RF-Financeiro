@@ -13,7 +13,7 @@ class FinancialAccountController extends Controller
 {
     //
     public function add(){
-        return view('app.adicionarConta');
+        return view('app.adicionar.adicionarConta');
     }
 
     public function store(Request $request){
@@ -24,12 +24,21 @@ class FinancialAccountController extends Controller
 
             $account->save();
 
-            return view('app.adicionarConta');
+            return redirect()->route('adicionar.conta');
 
         }catch(Exception $err){
             //
         }
 
 
+    }
+
+    public function list(){
+        $user = Auth::user();
+        $account = FinancialAccount::where('user', $user->id)->get();
+
+        return view('app.consultar.contaFinanceira', [
+            'contas' => $account
+        ]);
     }
 }

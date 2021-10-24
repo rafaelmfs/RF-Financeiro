@@ -40,8 +40,6 @@ class UserController extends Controller
             'movimentacoes' => $lastMovements
         ]);
     }
-
-
     /**
      * Show the form for creating a new resource.
      *

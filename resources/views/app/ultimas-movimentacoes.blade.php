@@ -1,10 +1,13 @@
 <div class="card detail">
     <div class="detail-header">
         <h2 class="my-2">Últimas Movimentações</h2>
-        <button class="my-2">Veja mais</button>
+        <form action="{{ route('movimentacoes.listar')}}" method="post">
+            @csrf
+            <button  class="my-2">Veja mais</button>
+        </form>
     </div>
     <table class="table">
-        <tr>
+        <tr class="sticky-top">
             <th class="table-head">Nome</th>
             <th class="table-head">Categoria</th>
             <th class="table-head">Conta</th>

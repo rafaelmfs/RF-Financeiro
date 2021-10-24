@@ -29,10 +29,10 @@
         <x-nav-link :href="route('adicionar')" :active="request()->routeIs('adicionar')">
             <div class="sidebar-menu">
                 <span class="fas fa-plus"></span>
-                        {{ __('Adicionar') }}
+                {{ __('Adicionar') }}
             </div>
         </x-nav-link>
-        <x-nav-link :href="route('listar')" :active="request()->routeIs('listar')">
+        <x-nav-link :href="route('consultar')" :active="request()->routeIs('consultar')">
             <div class="sidebar-menu">
                 <span class="fas fa-list-alt"></span>
                     {{ __('Consultar') }}
