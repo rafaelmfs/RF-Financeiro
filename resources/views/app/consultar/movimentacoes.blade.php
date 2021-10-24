@@ -30,20 +30,22 @@
                             <td class="">s</td>
                         </tr>
                     @endforeach
-                    <tr class="">
-                        <td class="" colspan="2">Crédito</td>
-                        <td class="" colspan="5">R$ {{$credito}}</td>
-                    </tr>
-                    <tr class="">
-                       <td class="" colspan="2">Débito</td>
-                       <td class="" colspan="5">R$ -{{$debito}}</td>
-                    </tr>
-                    <tr class="">
-                        <td class="" colspan="2">Total</td>
-                        <td class="" colspan="5">R$ {{$total}}</td>
-
-                    </tr>
                 </table>
+                <div class="col col-6 my-4">
+                    <div class="d-flex justify-content-between text-success">
+                        <p class="fst-italic m-0 margin-none">Total de Crédito</p>
+                        <p class="fw-bold margin-none">R$ {{$credito}}</p>
+                    </div>
+                    <div class="d-flex justify-content-between text-danger">
+                       <p class="fst-italic  margin-none">Total de Débito</p>
+                       <p class="fw-bold margin-none">R$ -{{$debito}}</p>
+                    </div>
+                    <div class="d-flex justify-content-between text-primary">
+                        <p class="fst-italic  margin-none">Valor Total</p>
+                        <p class="fw-bold margin-none">R$ {{$total}}</p>
+
+                    </div>
+                </div>
 
                 <div  class="d-flex justify-content-between">
                     <a href="javascript:history.back()" class="btn btn-outline-secondary px-5 me-2">Voltar </a>

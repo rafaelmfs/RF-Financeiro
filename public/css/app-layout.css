@@ -313,6 +313,10 @@ div.card{
     animation: balance 500ms;
 }
 
+.margin-none{
+    margin: 0;
+}
+
 
 p.active::after{
     content: url(../imagens/chevron-down.svg);
