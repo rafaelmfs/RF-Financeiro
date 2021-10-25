@@ -17,6 +17,7 @@
                         <th class="table-head">Conta</th>
                         <th class="table-head">Valor</th>
                         <th class="table-head">Vencimento</th>
+                        <th class="table-head">Status</th>
                         <th class="table-head">Ações</th>
                     </tr>
                     @foreach ($movimentacoes as $movimentacao)
@@ -27,6 +28,7 @@
                             <td class="">{{$movimentacao->financial_account}}</td>
                             <td class="">R$ {{$movimentacao->value}}</td>
                             <td class="">{{$movimentacao->date}}</td>
+                            <td class="{{$movimentacao->state}}">{{ucwords($movimentacao->state)}}</td>
                             <td class="">s</td>
                         </tr>
                     @endforeach

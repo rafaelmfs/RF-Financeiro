@@ -253,14 +253,20 @@ div.card{
 
 .andamento {
     color: #ffa705;
+    font-weight: bold;
+    filter: drop-shadow(0 0 0.5rem #f1bd5b);
 }
 
 .confirmado {
     color: #37aa38;
+    font-weight: bold;
+    filter: drop-shadow(0 0 0.5rem #63eb65b2);
 }
 
 .pendente {
-    color: #691414
+    color: #850808;
+    font-weight: bold;
+    filter: drop-shadow(0 0 0.5rem rgba(173, 89, 89, 0.569));
 }
 
 .customer-wrapper {
