@@ -31,7 +31,7 @@ class FinancialTransactionController extends Controller
     public function salvar(Request $request){
         $movimentacao = New FinancialTransation();
         try{
-            $movimentacao->name = ucwords(mb_strtolower($request->name, $encoding = mb_internal_encoding()));
+            $movimentacao->name = ucwords(mb_strtolower($request->nome, $encoding = mb_internal_encoding()));
             $movimentacao->type_movement = $request->tipo;
             $movimentacao->financial_account = $request->conta;
             $movimentacao->category = $request->categoria;
