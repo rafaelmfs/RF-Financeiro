@@ -22,77 +22,77 @@ class FinancialTransation extends Model
 
     // }
 
-    public function valueTotal($transactions){
+    public function valorTotal($movimentacoes){
 
-        $totals = 0;
-        foreach($transactions as $transaction){
-            $totals += $transaction->value;
+        $totais = 0;
+        foreach($movimentacoes as $movimentacao){
+            $totais += $movimentacao->value;
         }
 
-        return $totals;
+        return $totais;
 
     }
 
-    public function valueTotalCredit($transactions){
-        $credit = array();
-        foreach($transactions as $i => $transaction){
-            if($transaction->type_movement == 1){
-                $credit[$i] = $transaction;
+    public function valorTotalCredito($movimentacoes){
+        $credito = array();
+        foreach($movimentacoes as $i => $movimentacao){
+            if($movimentacao->type_movement == 1){
+                $credito[$i] = $movimentacao;
             }
         }
 
-        $totals = $this->valueTotal($credit);
-        return $totals;
+        $totais = $this->valorTotal($credito);
+        return $totais;
     }
 
-    public function valueTotalDebit($transactions){
-        $debit = array();
-        foreach($transactions as $i => $transaction){
-            if($transaction->type_movement == 2){
-                $debit[$i] = $transaction;
+    public function valorTotalDebito($movimentacoes){
+        $debito = array();
+        foreach($movimentacoes as $i => $movimentacao){
+            if($movimentacao->type_movement == 2){
+                $debito[$i] = $movimentacao;
             }
         }
 
-        $totals = $this->valueTotal($debit);
-        return $totals;
+        $totais = $this->valorTotal($debito);
+        return $totais;
     }
 
-    public function formattedMoves($user){
+    public function movimentacoesFormatadas($user){
 
-        $movements = FinancialTransation::where('user', $user->id)->get();
+        $movimentacoes = FinancialTransation::where('user', $user->id)->get();
 
-        foreach($movements as $movement){
+        foreach($movimentacoes as $movement){
             $movement->category = Category::find($movement->category)->name;
             $movement->financial_account = FinancialAccount::find($movement->financial_account)->name;
             $movement->type_movement = TypeMovements::find($movement->type_movement)->name;
         }
 
-        return $movements;
+        return $movimentacoes;
     }
 
-    public function formattedMovesFilter($movements){
+    public function filtrarMovimentacoesFormatadas($movementacoes){
 
-        foreach($movements as $movement){
-            $movement->category = Category::find($movement->category)->name;
-            $movement->financial_account = FinancialAccount::find($movement->financial_account)->name;
-            $movement->type_movement = TypeMovements::find($movement->type_movement)->name;
+        foreach($movementacoes as $movementacao){
+            $movementacao->category = Category::find($movementacao->category)->name;
+            $movementacao->financial_account = FinancialAccount::find($movementacao->financial_account)->name;
+            $movementacao->type_movement = TypeMovements::find($movementacao->type_movement)->name;
         }
 
-        return $movements;
+        return $movementacoes;
     }
 
-    public function filtterAll($user, $request){
-        $transactions = FinancialTransation::where([
+    public function filtrarTodos($user, $request){
+        $movimentacoes = FinancialTransation::where([
             ['user', $user->id],
             ['category', $request->category],
             ['financial_account', $request->account],
             ['type_movement', $request->type],])
             ->whereBetween('created_at', ["$request->start%", "$request->end%"])
             ->get();
-        return $transactions;
+        return $movimentacoes;
     }
 
-    public function filtterCategoryAccountType($user, $request){
+    public function filtrarCategoriaContaTipo($user, $request){
         $transactions = FinancialTransation::where([
             ['user', $user->id],
             ['category', $request->category],
@@ -103,17 +103,27 @@ class FinancialTransation extends Model
 
     }
 
-    public function filtterAccountTypePeriod($user, $request){
-        $transactions = FinancialTransation::where([
+    public function filtrarContaTipoPeriodo($user, $request){
+        $movimentacoes = FinancialTransation::where([
             ['user', $user->id],
             ['financial_account', $request->account],
             ['type_movement', $request->type],])
             ->whereBetween('created_at', ["$request->start%", "$request->end%"])
             ->get();
-        return $transactions;
+        return $movimentacoes;
     }
 
-    public function filtterCategoryAccount($user, $request){
+    public function filtrarCategoriaTipoPeriodo($user, $request){
+        $movimentacoes = FinancialTransation::where([
+            ['user', $user->id],
+            ['category', $request->category],
+            ['type_movement', $request->type],])
+            ->whereBetween('created_at', ["$request->start%", "$request->end%"])
+            ->get();
+        return $movimentacoes;
+    }
+
+    public function filtrarCategoriaConta($user, $request){
         $transactions = FinancialTransation::where([
             ['user', $user->id],
             ['category', $request->category],
@@ -122,71 +132,71 @@ class FinancialTransation extends Model
         return $transactions;
     }
 
-    public function filtterCategoryPeriod($user, $request){
-        $transactions = FinancialTransation::where([
+    public function filtrarCategoriaPeriodo($user, $request){
+        $movimentacoes = FinancialTransation::where([
             ['user', $user->id],
             ['category', $request->category],])
             ->whereBetween('created_at', ["$request->start%", "$request->end%"])
             ->get();
-        return $transactions;
+        return $movimentacoes;
     }
 
-    public function filtterCategoryType($user, $request){
-        $transactions = FinancialTransation::where([
+    public function filtrarCategoriaTipo($user, $request){
+        $movimentacoes = FinancialTransation::where([
             ['user', $user->id],
             ['category', $request->category],
             ['type_movement', $request->type],])
             ->get();
-        return $transactions;
+        return $movimentacoes;
     }
 
-    public function filtterAccountType($user, $request){
-        $transactions = FinancialTransation::where([
+    public function filtrarTipoConta($user, $request){
+        $movimentacoes = FinancialTransation::where([
             ['user', $user->id],
             ['financial_account', $request->account],
             ['type_movement', $request->type],])
             ->get();
-        return $transactions;
+        return $movimentacoes;
     }
 
-    public function filtterTypePeriod($user, $request){
-        $transactions = FinancialTransation::where([
+    public function filtrarTipoPeriodo($user, $request){
+        $movimentacoes = FinancialTransation::where([
             ['user', $user->id],
             ['type_movement', $request->type],])
             ->whereBetween('created_at', ["$request->start%", "$request->end%"])
             ->get();
-        return $transactions;
+        return $movimentacoes;
     }
 
-    public function filtterCategory($user, $request){
-        $transactions = FinancialTransation::where([
+    public function filtrarCategoria($user, $request){
+        $movimentacoes = FinancialTransation::where([
             ['user', $user->id],
             ['category', $request->category],])
             ->get();
-        return $transactions;
+        return $movimentacoes;
     }
 
-    public function filtterAccount($user, $request){
-        $transactions = FinancialTransation::where([
+    public function filtrarConta($user, $request){
+        $movimentacoes = FinancialTransation::where([
             ['user', $user->id],
             ['financial_account', $request->account],])
             ->get();
-        return $transactions;
+        return $movimentacoes;
     }
 
-    public function filtterType($user, $request){
-        $transactions = FinancialTransation::where([
+    public function filtrarTipo($user, $request){
+        $movimentacoes = FinancialTransation::where([
             ['user', $user->id],
             ['type_movement', $request->type],])
             ->get();
-        return $transactions;
+        return $movimentacoes;
     }
 
-    public function filtterPeriod($user, $request){
-        $transactions = FinancialTransation::where('user', $user->id)
+    public function filtrarPeriodo($user, $request){
+        $movimentacoes = FinancialTransation::where('user', $user->id)
             ->whereBetween('created_at', ["$request->start%", "$request->end%"])
             ->get();
-        return $transactions;
+        return $movimentacoes;
     }
 
 

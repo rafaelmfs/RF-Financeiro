@@ -6,13 +6,22 @@
             <img src="{{ asset('imagens/logo.rf.png') }}" some text width=50 height=50 class="mx-2">
 
             @php
-                $nome = explode(" ", Auth::user()->name);
+            if(str_contains(Auth::user()->name, " ")){
+                $nome = explode(" ", Auth::user()->name, 4);
                 foreach($nome as $i => $palavra){
                     $palavra = ucwords(mb_strtolower($palavra, $encoding = mb_internal_encoding()));
                     $nome[$i] = $palavra;
                 }
+            }
+            else{
+                $nome = Auth::user()->name;
+            }
             @endphp
-            <div>{{ "$nome[0] $nome[1]"}}</div>
+            @if (is_iterable($nome))
+                <div>{{ "$nome[0] $nome[1]"}}</div>
+            @else
+                <div>{{ "$nome"}}</div>
+            @endif
 
             <div class="ml-1">
                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

@@ -17,7 +17,29 @@
                     @foreach ($contas as $conta)
                         <tr>
                             <td class="fs-6">{{$conta->name}}</td>
-                            <td class="fs-6">Ações</td>
+                            <td class="fs-6 d-flex justify-content-center">
+                                <button class="far fa-edit mx-2" data-bs-toggle="modal" data-bs-target="#modalEditarConta{{$conta->id}}">
+                                </button>
+                                @include('app.consultar.modal-editar-conta')
+
+
+                                <form class="mx-2" action="{{ route('apagar.conta', ['conta' => $conta->id]) }}" method='post'>
+                                    @csrf
+                                    @method('delete')
+                                    <input type="hidden" name="user" value="{{$conta->id}}">
+                                    @if($conta->deletavel)
+                                        <button type="button" class="fas fa-trash" type="submit" value="" data-bs-toggle="modal" data-bs-target="#modalDeletar{{$conta->id}}">
+                                        </button>
+                                    @else
+                                        <button type="button" class="fas fa-trash delete" type="submit" value="" disabled="disabled">
+                                        </button>
+                                    @endif
+                                    @component('components.modal-deletar', ['id' => $conta->id])
+                                    @endcomponent
+
+                                </form>
+                            </td>
+                            </td>
                         </tr>
                     @endforeach
                 </table>

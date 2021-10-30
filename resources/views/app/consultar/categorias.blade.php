@@ -19,7 +19,27 @@
                         <tr>
                             <td class="fs-6">{{$categoria->name}}</td>
                             <td class="fs-6">{{$categoria->typeMovement}}</td>
-                            <td class="fs-6">Ações</td>
+                            <td class="fs-6 d-flex justify-content-center">
+                                <button class="far fa-edit mx-2" data-bs-toggle="modal" data-bs-target="#modalCategoria{{$categoria->id}}">
+                                </button>
+                                @include('app.consultar.modal-editar-categoria')
+
+
+                                <form class="mx-2" action="{{ route('apagar.categoria', ['categoria' => $categoria->id]) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="hidden" name="id" value="{{$categoria->id}}">
+                                    @if($categoria->deletavel)
+                                        <button type="button" class="fas fa-trash" value="" data-bs-toggle="modal" data-bs-target="#modalDeletar{{$categoria->id}}">
+                                        </button>
+                                    @else
+                                        <button class="delete fas fa-trash" value="" disabled='disabled'>
+                                        </button>
+                                    @endif
+                                    @component('components.modal-deletar', ['id' => $categoria->id])
+                                    @endcomponent
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </table>

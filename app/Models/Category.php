@@ -11,16 +11,29 @@ class Category extends Model
     use HasFactory;
     protected $table = 'categories';
 
-    public function formatTypeName($categories){
+    public function formatarNomeTipo($categorias){
 
-        foreach($categories as $category){
-            if($category->typeMovement == 1){
-                $category->typeMovement= "Crédito";
-            }else if($category->typeMovement == 2){
-                $category->typeMovement = "Débito";
+        foreach($categorias as $categoria){
+            if($categoria->typeMovement == 1){
+                $categoria->typeMovement= "Crédito";
+            }else if($categoria->typeMovement == 2){
+                $categoria->typeMovement = "Débito";
             }
         }
-        return $categories;
+        return $categorias;
+    }
+
+    public function deletavel($categorias){
+
+        foreach($categorias as $categoria){
+            $movimentacao = FinancialTransation::where('category', $categoria->id)->first();
+            if(empty($movimentacao)){
+                $categoria->deletavel = true;
+            }else{
+                $categoria->deletavel = false;
+            }
+        }
+        return $categorias;
     }
 
     public function typeMovement(){

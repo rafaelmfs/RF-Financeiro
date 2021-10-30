@@ -22,22 +22,22 @@ class UserController extends Controller
     public function index()
     {
         //
-        $movements = new FinancialTransation();
+        $movimentacoes = new FinancialTransation();
         $user = Auth::user();
-        $valueCredit = $movements->valueTotal($movements->where('user', $user->id)->where('type_movement', 1)->get());
-        $valueDebt = $movements->valueTotal($movements->where('user', $user->id)->where('type_movement', 2)->get());
-        $amountCredit = count($movements->where('user', $user->id)->where('type_movement', 1)->get());
-        $amountDebt = count($movements->where('user', $user->id)->where('type_movement', 2)->get());
-        $lastMovements = $movements->formattedMoves($user);
+        $valorCredito = $movimentacoes->valorTotal($movimentacoes->where('user', $user->id)->where('type_movement', 1)->get());
+        $valorDebito = $movimentacoes->valorTotal($movimentacoes->where('user', $user->id)->where('type_movement', 2)->get());
+        $quantidadeCredito = count($movimentacoes->where('user', $user->id)->where('type_movement', 1)->get());
+        $quantidadeDebito = count($movimentacoes->where('user', $user->id)->where('type_movement', 2)->get());
+        $ultimasMovimentacoes = $movimentacoes->movimentacoesFormatadas($user);
 
         return view('app.dashboard', [
             'user' => $user,
-            'creditoValor' => $valueCredit,
-            'creditoTotal' => $amountCredit,
-            'debitoValor' => $valueDebt,
-            'debitoTotal' => $amountDebt,
-            'total' => ($valueCredit - $valueDebt),
-            'movimentacoes' => $lastMovements
+            'creditoValor' => $valorCredito,
+            'creditoTotal' => $quantidadeCredito,
+            'debitoValor' => $valorDebito,
+            'debitoTotal' => $quantidadeDebito,
+            'total' => ($valorCredito - $valorDebito),
+            'movimentacoes' => $ultimasMovimentacoes
         ]);
     }
     /**

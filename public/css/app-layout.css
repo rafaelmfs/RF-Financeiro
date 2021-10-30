@@ -264,9 +264,9 @@ div.card{
 }
 
 .pendente {
-    color: #850808;
+    color: #d10606;
     font-weight: bold;
-    filter: drop-shadow(0 0 0.5rem rgba(173, 89, 89, 0.569));
+    filter: drop-shadow(0 0 0.5rem  #f04949c2);
 }
 
 .customer-wrapper {
@@ -323,6 +323,16 @@ div.card{
     margin: 0;
 }
 
+#table{
+    overflow: auto;
+    max-height: 60%;
+
+}
+
+.delete:disabled{
+    cursor: default;
+    color: gray;
+}
 
 p.active::after{
     content: url(../imagens/chevron-down.svg);

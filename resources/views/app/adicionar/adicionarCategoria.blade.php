@@ -17,12 +17,12 @@
             <form action="{{ route('salvar.categoria') }}" method="post">
                 @csrf
                 <div class="mb-3 row p-2">
-                    <label for="name" class="form-label align-baseline col-1 py-1">Nome:</label>
-                    <input type="text" class="form-control col" id="" name="name" placeholder="Digite o nome de uma categoria">
+                    <label for="nome" class="form-label align-baseline col-1 py-1">Nome:</label>
+                    <input type="text" class="form-control col" id="" name="nome" placeholder="Digite o nome de uma categoria">
                 </div>
                 <div class="mb-3 row p-2">
-                    <label for="type" class="form-label col-1 py-1">Tipo:</label>
-                    <select class="form-select col" name="type">
+                    <label for="tipo" class="form-label col-1 py-1">Tipo:</label>
+                    <select class="form-select col" name="tipo">
                         <option selected>Escolha Crédito ou Débito</option>
                         @foreach ($tipos as $tipo)
                             <option value={{$tipo->id}}>{{ucwords($tipo->name)}}</option>

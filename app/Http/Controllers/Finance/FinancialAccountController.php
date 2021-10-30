@@ -12,17 +12,17 @@ use Illuminate\Support\Facades\Auth;
 class FinancialAccountController extends Controller
 {
     //
-    public function add(){
+    public function inserir(){
         return view('app.adicionar.adicionarConta');
     }
 
-    public function store(Request $request){
-        $account = new FinancialAccount();
+    public function salvar(Request $request){
+        $conta = new FinancialAccount();
         try{
-            $account->user = Auth::user()->id;
-            $account->name = ucwords(mb_strtolower($request->name, $encoding = mb_internal_encoding()));
+            $conta->user = Auth::user()->id;
+            $conta->name = ucwords(mb_strtolower($request->name, $encoding = mb_internal_encoding()));
 
-            $account->save();
+            $conta->save();
 
             return redirect()->route('adicionar.conta');
 
@@ -33,12 +33,31 @@ class FinancialAccountController extends Controller
 
     }
 
-    public function list(){
+    public function listar(){
         $user = Auth::user();
-        $account = FinancialAccount::where('user', $user->id)->get();
+        $contaFinanceira = FinancialAccount::where('user', $user->id)->get();
+        $contas = new FinancialAccount();
+        $contas = $contas->deletavel($contaFinanceira);
 
         return view('app.consultar.contaFinanceira', [
-            'contas' => $account
+            'contas' => $contas
         ]);
+    }
+
+    public function editar(FinancialAccount $conta, Request $request){
+        if(!empty($request->name)){
+            $conta->name = $request->name;
+            $conta->save();
+        }
+
+        return redirect()->route('contas.listar');
+    }
+
+
+    public function apagar(FinancialAccount $conta){
+        $conta->delete();
+
+        return redirect()->route('contas.listar');
+
     }
 }

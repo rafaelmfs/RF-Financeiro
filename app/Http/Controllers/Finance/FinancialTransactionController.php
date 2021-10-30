@@ -15,33 +15,33 @@ use Illuminate\Support\Facades\Auth;
 class FinancialTransactionController extends Controller
 {
     //
-    public function add(){
+    public function inserir(){
         $user = Auth::user();
-        $categories = Category::where('user', $user->id)->get();
-        $type = TypeMovements::all();
-        $account = FinancialAccount::where('user', $user->id)->get();
+        $categorias = Category::where('user', $user->id)->get();
+        $tipos = TypeMovements::all();
+        $conta = FinancialAccount::where('user', $user->id)->get();
 
         return view('app.adicionar.adicionar', [
-            'categorias' => $categories,
-            'tipos' => $type,
-            'contas' => $account
+            'categorias' => $categorias,
+            'tipos' => $tipos,
+            'contas' => $conta
         ]);
     }
 
-    public function store(Request $request){
-        $transaction = New FinancialTransation();
+    public function salvar(Request $request){
+        $movimentacao = New FinancialTransation();
         try{
-            $transaction->name = ucwords(mb_strtolower($request->name, $encoding = mb_internal_encoding()));
-            $transaction->type_movement = $request->type;
-            $transaction->financial_account = $request->account;
-            $transaction->category = $request->category;
-            $transaction->value = $request->valueTransaction;
-            $transaction->date = $request->dueDate;
-            $transaction->description = $request->description;
-            $transaction->user = Auth::user()->id;
-            $transaction->state = $request->state;
+            $movimentacao->name = ucwords(mb_strtolower($request->name, $encoding = mb_internal_encoding()));
+            $movimentacao->type_movement = $request->tipo;
+            $movimentacao->financial_account = $request->conta;
+            $movimentacao->category = $request->categoria;
+            $movimentacao->value = $request->valorMovimentacao;
+            $movimentacao->date = $request->dataVencimento;
+            $movimentacao->description = $request->descricao;
+            $movimentacao->user = Auth::user()->id;
+            $movimentacao->state = $request->status;
 
-            $transaction->save();
+            $movimentacao->save();
 
             return redirect()->route('movimentacoes.listar');
         }catch(Exception $err){
@@ -49,87 +49,91 @@ class FinancialTransactionController extends Controller
         }
     }
 
-    public function consult(){
+    public function consultar(){
         $user = Auth::user();
-        $categories = Category::where('user', $user->id)->get();
-        $account = FinancialAccount::where('user', $user->id)->get();
+        $categorias = Category::where('user', $user->id)->get();
+        $contas = FinancialAccount::where('user', $user->id)->get();
         // $transaction = FinancialTransation::where('id', $user->id)->get();
         return view('app.consultar.consultarMovimentacoesForm', [
-            'categorias' => $categories,
-            'contas' => $account
+            'categorias' => $categorias,
+            'contas' => $contas
         ]);
     }
 
-    public function consultFilter(Request $request){
+    public function consultarFiltro(Request $request){
         $user = Auth::user();
-        $transaction = new FinancialTransation();
+        $movimentacao = new FinancialTransation();
 
         //categoria, conta, tipo e periodo
         if(($request->category) && ($request->account) && ($request->type) && ($request->start) && ($request->end)){
-            $movements = $transaction->filtterAll($user, $request);
+            $movimentacoes = $movimentacao->filtrarTodos($user, $request);
         }
         //categoria, conta e tipo
         else if(($request->category) && ($request->account) && ($request->type)){
-            $movements = $transaction->filtterCategoryAccountType($user, $request);
+            $movimentacoes = $movimentacao->filtrarCategoriaContaTipo($user, $request);
         }
         //conta, tipo e periodo
         else if(($request->account) && ($request->type) && ($request->start) && ($request->end)){
-            $movements = $transaction->filtterAccountTypePeriod($user, $request);
+            $movimentacoes = $movimentacao->filtrarContaTipoPeriodo($user, $request);
+        }
+        //categoria, tipo e periodo
+        else if(($request->category) && ($request->type) && ($request->start) && ($request->end)){
+            $movimentacoes = $movimentacao->filtrarCategoriaTipoPeriodo($user, $request);
         }
         //categoria e conta//
         else if(($request->category) && ($request->account)){
-            $movements = $transaction->filtterCategoryAccount($user, $request);
+            $movimentacoes = $movimentacao->filtrarCategoriaConta($user, $request);
         }
         //categoria e periodo//
         else if(($request->category) && ($request->start) && ($request->end)){
-            $movements = $transaction->filtterCategoryPeriod($user, $request);
+            $movimentacoes = $movimentacao->filtrarCategoriaPeriodo($user, $request);
         }
         //categoria e tipo//
         else if(($request->category) && ($request->type) ){
-            $movements = $transaction->filtterCategoryType($user, $request);
+            $movimentacoes = $movimentacao->filtrarCategoriaTipo($user, $request);
         }
         //conta e tipo
         else if(($request->account) && ($request->type) ){
-            $movements = $transaction->filtterAccountType($user, $request);
+            $movimentacoes = $movimentacao->filtrarTipoConta($user, $request);
         }
         //tipo e periodo
         else if(($request->type) && ($request->start) && ($request->end)){
-            $movements = $transaction->filtterTypePeriod($user, $request);
+            $movimentacoes = $movimentacao->filtrarTipoPeriodo($user, $request);
         }
         //categoria
         else if(($request->category)){
-            $movements = $transaction->filtterCategory($user, $request);
+            $movimentacoes = $movimentacao->filtrarCategoria($user, $request);
         }
         //conta
         else if(($request->account)){
-            $movements = $transaction->filtterAccount($user, $request);
+            $movimentacoes = $movimentacao->filtrarConta($user, $request);
 
         }
         //tipo
         else if(($request->type)){
-            $movements = $transaction->filtterType($user, $request);
+            $movimentacoes = $movimentacao->filtrarTipo($user, $request);
 
         }
         //periodo
         else if(($request->start) && ($request->end)){
-            $movements = $transaction->filtterPeriod($user, $request);
+            $movimentacoes = $movimentacao->filtrarPeriodo($user, $request);
         }
         //todos
         else{
-            $movements = FinancialTransation::where('user', $user->id)->get();
+            $movimentacoes = FinancialTransation::where('user', $user->id)->get();
         }
 
-
-        $valueCredit = $transaction->valueTotalCredit($movements);
-        $valueDebit = $transaction->valueTotalDebit($movements);
-        $totals = $valueCredit - $valueDebit;
-        $movementsFormated = $transaction->formattedMovesFilter($movements);
+        // dd($movimentacao);
+        $valorCredito = $movimentacao->valorTotalCredito($movimentacoes);
+        $valorDebito = $movimentacao->valorTotalDebito($movimentacoes);
+        $totais = $valorCredito - $valorDebito;
+        $movimentacaoFormatada = $movimentacao->filtrarMovimentacoesFormatadas($movimentacoes);
 
         return view('app.consultar.movimentacoes', [
-            'credito' => $valueCredit,
-            'debito' => $valueDebit,
-            'total' => $totals,
-            'movimentacoes' => $movementsFormated
+            'credito' => $valorCredito,
+            'debito' => $valorDebito,
+            'total' => $totais,
+            'movimentacoes' => $movimentacaoFormatada
         ]);
 
     }

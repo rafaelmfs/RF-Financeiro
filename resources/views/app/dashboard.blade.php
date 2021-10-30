@@ -6,10 +6,15 @@
     </x-slot>
     <div class="dashboard-container">
         @php
-        $nome = explode(" ", Auth::user()->name, 4);
-        foreach($nome as $i => $palavra){
-            $palavra = ucwords(mb_strtolower($palavra, $encoding = mb_internal_encoding()));
-            $nome[$i] = $palavra;
+        if(str_contains(Auth::user()->name, " ")){
+            $nome = explode(" ", Auth::user()->name, 4);
+            foreach($nome as $i => $palavra){
+                $palavra = ucwords(mb_strtolower($palavra, $encoding = mb_internal_encoding()));
+                $nome[$i] = $palavra;
+            }
+        }
+        else{
+            $nome = Auth::user()->name;
         }
         @endphp
 
@@ -18,7 +23,11 @@
             <div class="info">
                 <div class="info-detail">
                     <h3>Receitas</h3>
-                    <p>de {{ "$nome[0] $nome[1] "}}</p>
+                    @if (is_iterable($nome))
+                        <p>de {{ "$nome[0] $nome[1] "}}</p>
+                    @else
+                        <p>de {{ "$nome"}}</p>
+                    @endif
                     <h2>
                         <span>R$</span>
                         {{str_replace('.', ',', $creditoValor)}}
@@ -33,7 +42,11 @@
             <div class="info">
                 <div class="info-detail">
                     <h3>Despesas</h3>
-                    <p>de {{ "$nome[0] $nome[1] "}}</p>
+                    @if (is_iterable($nome))
+                        <p>de {{ "$nome[0] $nome[1] "}}</p>
+                    @else
+                        <p>de {{ "$nome"}}</p>
+                    @endif
                     <h2>
                         <span>R$</span>
                         {{str_replace('.', ',', $debitoValor)}}
@@ -48,7 +61,11 @@
             <div class="info">
                 <div class="info-detail">
                     <h3>Total</h3>
-                    <p>de {{ "$nome[0] $nome[1] "}}</p>
+                    @if (is_iterable($nome))
+                        <p>de {{ "$nome[0] $nome[1] "}}</p>
+                    @else
+                        <p>de {{ "$nome"}}</p>
+                    @endif
                     <h2>
                         <span>R$</span>
                         {{str_replace('.', ',', $total)}}

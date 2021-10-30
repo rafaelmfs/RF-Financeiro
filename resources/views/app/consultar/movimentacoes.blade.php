@@ -9,30 +9,32 @@
         <div class="container my-2">
             <h2 class="display-5">Resultado</h2>
             <div class="border bg-light rounded-3 p-5 detail">
-                <table class="table">
-                    <tr>
-                        <th class="table-head">Nome</th>
-                        <th class="table-head">Tipo</th></th>
-                        <th class="table-head">Categoria</th>
-                        <th class="table-head">Conta</th>
-                        <th class="table-head">Valor</th>
-                        <th class="table-head">Vencimento</th>
-                        <th class="table-head">Status</th>
-                        <th class="table-head">Ações</th>
-                    </tr>
-                    @foreach ($movimentacoes as $movimentacao)
+                <div id="table">
+                    <table class="table">
                         <tr>
-                            <td class="">{{$movimentacao->name}}</td>
-                            <td class="">{{$movimentacao->type_movement}}</td></th>
-                            <td class="">{{$movimentacao->category}}</td>
-                            <td class="">{{$movimentacao->financial_account}}</td>
-                            <td class="">R$ {{$movimentacao->value}}</td>
-                            <td class="">{{$movimentacao->date}}</td>
-                            <td class="{{$movimentacao->state}}">{{ucwords($movimentacao->state)}}</td>
-                            <td class="">s</td>
+                            <th class="table-head">Nome</th>
+                            <th class="table-head">Tipo</th></th>
+                            <th class="table-head">Categoria</th>
+                            <th class="table-head">Conta</th>
+                            <th class="table-head">Valor</th>
+                            <th class="table-head">Vencimento</th>
+                            <th class="table-head">Status</th>
+                            <th class="table-head">Ações</th>
                         </tr>
-                    @endforeach
-                </table>
+                        @foreach ($movimentacoes as $movimentacao)
+                            <tr>
+                                <td class="">{{$movimentacao->name}}</td>
+                                <td class="">{{$movimentacao->type_movement}}</td></th>
+                                <td class="">{{$movimentacao->category}}</td>
+                                <td class="">{{$movimentacao->financial_account}}</td>
+                                <td class="">R$ {{$movimentacao->value}}</td>
+                                <td class="">{{$movimentacao->date}}</td>
+                                <td class="{{$movimentacao->state}}">{{ucwords($movimentacao->state)}}</td>
+                                <td class="">s</td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
                 <div class="col col-6 my-4">
                     <div class="d-flex justify-content-between text-success">
                         <p class="fst-italic m-0 margin-none">Total de Crédito</p>

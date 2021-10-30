@@ -12,37 +12,60 @@ use Illuminate\Support\Facades\Auth;
 class CategoriesController extends Controller
 {
     //
-    public function add(){
-        $type = TypeMovements::all();
+    public function inserir(){
+        $tipo = TypeMovements::all();
         return view('app.adicionar.adicionarCategoria', [
-            'tipos' => $type
+            'tipos' => $tipo
         ]);
     }
 
-    public function store(Request $request){
-        $category = New Category();
+    public function salvar(Request $request){
+        $categoria = New Category();
         try{
-            $category->typeMovement = $request->type;
-            $category->user = Auth::user()->id;
-            $category->name = ucwords(mb_strtolower($request->name, $encoding = mb_internal_encoding()));
-            $category->save();
+            $categoria->typeMovement = $request->tipo;
+            $categoria->user = Auth::user()->id;
+            $categoria->name = ucwords(mb_strtolower($request->nome, $encoding = mb_internal_encoding()));
+            $categoria->save();
 
             return redirect()->route('adicionar.categoria');
 
         }catch(Exception $err){
-
+            dd($err);
         }
     }
 
-    public function list(){
+    public function listar(){
         //
         $user = Auth::user();
-        $categoriesFormated = new Category();
-        $categories = Category::where('user', $user->id)->get();
+        $categoriaFormatada = new Category();
+        $categoria = Category::where('user', $user->id)->get();
+        $tipo = TypeMovements::all();
+
+        $categorias = $categoriaFormatada->deletavel($categoria);
 
         return view("app.consultar.categorias", [
-            'categorias' => $categoriesFormated->formatTypeName($categories)
+            'categorias' => $categoriaFormatada->formatarNomeTipo($categorias),
+            'tipos' => $tipo
         ]);
+
+    }
+
+    public function editar(Category $categoria, Request $request){
+            if(!empty($request->nome)){
+                $categoria->name = $request->nome;
+            }
+            if(!empty($request->tipo)){
+                $categoria->typeMovement = $request->tipo;
+            }
+            $categoria->save();
+
+        return redirect()->route('categorias.listar');
+    }
+
+    public function apagar(Category $categoria){
+        $categoria->delete();
+
+        return redirect()->route('categorias.listar');
 
     }
 }

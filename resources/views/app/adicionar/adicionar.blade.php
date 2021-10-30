@@ -21,13 +21,13 @@
                 <h2 class="mb-4">Adicionar Nova Transação</h2>
                 <div class="row">
                     <div class="mb-3 col-md-6">
-                        <label for="name" class="form-label">Nome:</label>
-                        <input type="text" class="form-control required-field" id="" name="name" placeholder="Digite um nome para essa movimentação">
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input type="text" class="form-control required-field" id="" name="nome" placeholder="Digite um nome para essa movimentação">
                         <p class="text-danger text-error"><em>O campo Nome é obrigatório.</em></p>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="type" class="form-label">Tipo:</label>
-                        <select class="form-select required-field" name="type">
+                        <select class="form-select required-field" name="tipo">
                             <option value="" selected>Escolha Crédito ou Débito</option>
                             @foreach ($tipos as $tipo)
                                 <option value={{$tipo->id}}>{{ucwords($tipo->name)}}</option>
@@ -39,8 +39,8 @@
                 </div>
                 <div class="row">
                     <div class="mb-3 col-md-6">
-                        <label for="account" class="form-label">Conta Financeira:</label>
-                        <select class="form-select required-field" name="account">
+                        <label for="conta" class="form-label">Conta Financeira:</label>
+                        <select class="form-select required-field" name="conta">
                             <option value="" selected>Selecione uma Conta</option>
                             @if (is_iterable($contas))
                                 @foreach ($contas as $conta)
@@ -53,11 +53,11 @@
                         <p class="text-danger text-error"><em>O campo Conta é obrigatório.</em></p>
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="category" class="form-label">Categoria:</label>
-                        <select class="form-select required-field" name="category">
+                        <label for="categoria" class="form-label">Categoria:</label>
+                        <select class="form-select required-field" name="categoria">
                             <option value="" selected>Selecione uma Categoria</option>
                             @foreach ($categorias as $categoria)
-                                <option value={{$categoria->id}}>{{ucwords($categoria->name)}}</option>
+                                <option window.StopWhateverBelow() value={{$categoria->id}}>{{ucwords($categoria->name)}}</option>
                             @endforeach
                         </select>
                         <p class="text-danger text-error"><em>O campo Categoria é obrigatório.</em></p>
@@ -66,22 +66,22 @@
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="valueTransaction" class="form-label">Valor:</label>
-                        <input type="number" min="0" step="0.01" class="form-control required-field" id="" name="valueTransaction" placeholder="Digite o valor, somente numeros">
+                        <input type="number" min="0" step="0.01" class="form-control required-field" id="" name="valorMovimentacao" placeholder="Digite o valor, somente numeros">
                         <p class="text-danger text-error"><em>O campo valor é obrigatório.</em></p>
 
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="dueDate" class="form-label">Vencimento:</label>
-                        <input type="date" class="form-control" id="" name="dueDate" aria-describedby="emailHelp">
+                        <input type="date" class="form-control" id="" name="dataVencimento" aria-describedby="emailHelp">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Descrição:</label>
-                    <textarea class="form-control" id="" name="description" rows="3"></textarea>
+                    <textarea class="form-control" id="" name="descricao" rows="3"></textarea>
                 </div>
                 <div class="mb-3 status">
                     <label for="state" class="form-label">Status: </label>
-                    <select class="form-select required-field" name="state">
+                    <select class="form-select required-field" name="status">
                         <option value="confirmado">Confirmado</option>
                         <option value="pendente">Pendente</option>
                     </select>

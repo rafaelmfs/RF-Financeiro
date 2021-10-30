@@ -51,7 +51,7 @@
                 @endif
 
                 <x-button class="ml-3">
-                    {{ __('Log in') }}
+                    {{ __('Conectar') }}
                 </x-button>
             </div>
         </form>
