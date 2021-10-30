@@ -19,7 +19,7 @@
                 @csrf
                 <div class="mb-3 row p-2">
                     <label for="name" class="form-label align-baseline col-1 py-1">Nome:</label>
-                    <input type="text" class="form-control col" id="" name="name" placeholder="Digite um nome a sua conta financeira">
+                    <input type="text" class="form-control col" id="" name="name" placeholder="Digite um nome a sua conta financeira" required>
                 </div>
                 <div class="d-flex justify-content-between">
                     <a href="javascript:history.back()"  class="btn btn-outline-secondary px-5 me-2">Voltar </a>
