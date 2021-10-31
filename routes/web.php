@@ -32,6 +32,8 @@ Route::get('/consultar', function(){
 Route::get('/categorias.listar', [CategoriesController::class, 'listar'])->middleware(['auth'])->name('categorias.listar');
 Route::get('/contas.listar', [FinancialAccountController::class, 'listar'])->middleware(['auth'])->name('contas.listar');
 Route::get('/movimentacoes.listar', [FinancialTransactionController::class, 'consultar'])->middleware(['auth'])->name('movimentacoes.listar');
+Route::get('/movimentaco.editar', [FinancialTransactionController::class, 'formEditar'])->middleware(['auth'])->name('editarForm.movimentacao');
+Route::get('/movimentaco.exibir/{movimentacao}', [FinancialTransactionController::class, 'exibir'])->middleware(['auth'])->name('exibir.movimentacao');
 Route::get('/relatorio', [FinancialTransactionController::class, 'report'])->middleware(['auth'])->name('relatorio');
 
 
@@ -44,11 +46,13 @@ Route::post('/movimentacoes.listar', [FinancialTransactionController::class, 'co
 //Put
 Route::put('/editar/categoria/{categoria}', [CategoriesController::class, 'editar'])->middleware(['auth'])->name('editar.categoria');
 Route::put('/editar/contaFinanceira/{conta}', [FinancialAccountController::class, 'editar'])->middleware(['auth'])->name('editar.conta');
+Route::put('/editar/movimentacao/{movimentacao}', [FinancialTransactionController::class, 'editar'])->middleware(['auth'])->name('editar.movimentacao');
 
 
 //Delete
 Route::delete('/apagar/categoria/{categoria}', [CategoriesController::class, 'apagar'])->middleware(['auth'])->name('apagar.categoria');
 Route::delete('/apagar/conta/{conta}', [FinancialAccountController::class, 'apagar'])->middleware(['auth'])->name('apagar.conta');
+Route::delete('/apagar/movimentacao/{movimentacao}', [FinancialTransactionController::class, 'apagar'])->middleware(['auth'])->name('apagar.movimentacao');
 
 
 require __DIR__.'/auth.php';

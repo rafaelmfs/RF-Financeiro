@@ -339,6 +339,12 @@ div.card{
     transition: 200ms;
 }
 
+.descricao{
+    overflow-y: auto;
+    max-height: 200px;
+    background-color: rgba(219, 248, 248, 0.521);
+}
+
 p.active::after{
     content: url(../imagens/chevron-down.svg);
     float: right;

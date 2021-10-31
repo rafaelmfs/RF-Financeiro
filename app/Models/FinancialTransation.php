@@ -61,24 +61,33 @@ class FinancialTransation extends Model
 
         $movimentacoes = FinancialTransation::where('user', $user->id)->get();
 
-        foreach($movimentacoes as $movement){
-            $movement->category = Category::find($movement->category)->name;
-            $movement->financial_account = FinancialAccount::find($movement->financial_account)->name;
-            $movement->type_movement = TypeMovements::find($movement->type_movement)->name;
+        foreach($movimentacoes as $movimentacao){
+            $movimentacao->category = Category::find($movimentacao->category)->name;
+            $movimentacao->financial_account = FinancialAccount::find($movimentacao->financial_account)->name;
+            $movimentacao->type_movement = TypeMovements::find($movimentacao->type_movement)->name;
         }
 
         return $movimentacoes;
     }
 
-    public function filtrarMovimentacoesFormatadas($movementacoes){
+    public function filtrarMovimentacoesFormatadas($movimentacoes){
+        if(is_iterable($movimentacoes)){
+            foreach($movimentacoes as $movimentacao){
+                $movimentacao->category = Category::find($movimentacao->category)->name;
+                $movimentacao->financial_account = FinancialAccount::find($movimentacao->financial_account)->name;
+                $movimentacao->type_movement = TypeMovements::find($movimentacao->type_movement)->name;
 
-        foreach($movementacoes as $movementacao){
-            $movementacao->category = Category::find($movementacao->category)->name;
-            $movementacao->financial_account = FinancialAccount::find($movementacao->financial_account)->name;
-            $movementacao->type_movement = TypeMovements::find($movementacao->type_movement)->name;
+
+            }
+
+        }else{
+            $movimentacoes->category = Category::find($movimentacoes->category)->name;
+            $movimentacoes->financial_account = FinancialAccount::find($movimentacoes->financial_account)->name;
+            $movimentacoes->type_movement = TypeMovements::find($movimentacoes->type_movement)->name;
+
         }
 
-        return $movementacoes;
+        return $movimentacoes;
     }
 
     public function filtrarTodos($user, $request){

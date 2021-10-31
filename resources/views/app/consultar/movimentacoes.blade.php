@@ -32,20 +32,24 @@
                                 <td class="{{$movimentacao->state}}">{{ucwords($movimentacao->state)}}</td>
                                 <td class="">
                                     <div class="fs-6 d-flex justify-content-center">
-                                        <button class="fas fa-exclamation-circle mx-2 text-info acoes">
-                                            <a href=""></a>
-                                        </button>
+                                        <form action="{{ route('exibir.movimentacao', ['movimentacao' => $movimentacao->id]) }}">
+                                            <input type="hidden" name="id" value="{{$movimentacao->id}}">
+                                            <button class="fas fa-exclamation-circle mx-2 text-info acoes">
+                                            </button>
+                                        </form>
 
-                                        <button class="far fa-edit mx-2 text-success acoes" data-bs-toggle="modal" data-bs-target="#modalEditarConta">
-                                        </button>
+                                        <form action="{{ route('editarForm.movimentacao') }}">
+                                            <input type="hidden" name="id" value="{{$movimentacao->id}}">
+                                            <button class="far fa-edit mx-2 text-success acoes"></button>
+                                        </form>
 
-                                        <form class="mx-2" action="" method='post'>
+                                        <form class="mx-2" action="{{ route('apagar.movimentacao', ['movimentacao' => $movimentacao->id]) }}" method='post'>
                                             @csrf
                                             @method('delete')
-                                            <input type="hidden" name="user" value="">
-                                            <button type="button" class="fas fa-trash text-danger acoes" type="submit" value="" data-bs-toggle="modal" data-bs-target="#modalDeletar">
+                                            <input type="hidden" name="id" value="{{$movimentacao->id}}">
+                                            <button type="button" class="fas fa-trash text-danger acoes" type="submit" value="" data-bs-toggle="modal" data-bs-target="#modalDeletar{{$movimentacao->id}}">
                                             </button>
-                                            @component('components.modal-deletar', ['id' => 1])
+                                            @component('components.modal-deletar', ['id' => $movimentacao->id])
                                             @endcomponent
 
                                         </form>

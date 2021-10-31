@@ -23,7 +23,7 @@
                 <div class="mb-3 row p-2">
                     <label for="tipo" class="form-label col-1 py-1">Tipo:</label>
                     <select class="form-select col" name="tipo" required>
-                        <option selected>Escolha Crédito ou Débito</option>
+                        <option value="" selected invalid>Escolha Crédito ou Débito</option>
                         @foreach ($tipos as $tipo)
                             <option value={{$tipo->id}}>{{ucwords($tipo->name)}}</option>
                         @endforeach

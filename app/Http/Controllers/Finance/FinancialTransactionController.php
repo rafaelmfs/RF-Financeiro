@@ -43,7 +43,7 @@ class FinancialTransactionController extends Controller
 
             $movimentacao->save();
 
-            return redirect()->route('movimentacoes.listar');
+            return  $this->exibir($movimentacao->id);
         }catch(Exception $err){
             //
         }
@@ -136,6 +136,66 @@ class FinancialTransactionController extends Controller
             'movimentacoes' => $movimentacaoFormatada
         ]);
 
+    }
+
+    public function formEditar(Request $request){
+        $movimentacao = FinancialTransation::find($request->id);
+        $tipo = TypeMovements::where('id', '<>', $movimentacao->type_movement)->get();
+        $categoria = Category::where('id', '<>', $movimentacao->category)->get();
+        $conta = FinancialAccount::where('id', '<>', $movimentacao->financial_account)->get();
+        $movimentacao = $movimentacao->filtrarMovimentacoesFormatadas($movimentacao);
+        return view('app.consultar.form-editar-movimentacoes', [
+            'movimentacao' =>$movimentacao,
+            'tipos' => $tipo,
+            'categorias' => $categoria,
+            'contas' => $conta
+         ]);
+    }
+
+    public function editar(FinancialTransation $movimentacao, Request $request){
+        //
+        try{
+            if(!empty($request->nome)){
+                $movimentacao->name = $request->nome;
+            }
+            if(!empty($request->tipo)){
+                $movimentacao->type_movement = $request->tipo;
+            }
+            if(!empty($request->conta)){
+                $movimentacao->financial_account = $request->conta;
+            }
+            if(!empty($request->categoria)){
+                $movimentacao->category = $request->categoria;
+            }
+            if(!empty($request->status)){
+                $movimentacao->state = $request->status;
+            }
+            $movimentacao->value = $request->valorMovimentacao;
+            $movimentacao->date = $request->dataVencimento;
+            $movimentacao->description = $request->descricao;
+            $movimentacao->save();
+
+            return  $this->exibir($movimentacao->id);
+
+        }catch(Exception $err){
+            dd($err);
+        }
+
+    }
+
+    public function apagar(FinancialTransation $movimentacao){
+        $movimentacao->delete();
+
+        return redirect()->route('movimentacoes.listar');
+    }
+
+    public function exibir($id){
+        $movimentacao = FinancialTransation::find($id);
+        $movimentacao = $movimentacao->filtrarMovimentacoesFormatadas($movimentacao);
+
+        return view('app.consultar.exibir-movimentacao', [
+            'movimentacao' => $movimentacao
+        ]);
     }
 
 

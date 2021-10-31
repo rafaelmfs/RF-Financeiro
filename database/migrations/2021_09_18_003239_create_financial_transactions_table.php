@@ -21,7 +21,7 @@ class CreateFinancialTransactionsTable extends Migration
             $table->unsignedBigInteger('financial_account');
             $table->unsignedBigInteger('category');
             $table->double('value');
-            $table->date('date');
+            $table->date('date')->nullable();
             $table->timestamps();
             $table->text('description');
             $table->string('state', 20);
