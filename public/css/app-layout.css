@@ -108,6 +108,7 @@
     padding: 6rem 2rem 2rem 6rem;
 }
 
+
 /* ------------------------- */
 .main-content {
     min-height: 100vh;
@@ -331,7 +332,11 @@ div.card{
 
 .delete:disabled{
     cursor: default;
-    color: gray;
+}
+
+.acoes:hover{
+    font-size: 130%;
+    transition: 200ms;
 }
 
 p.active::after{

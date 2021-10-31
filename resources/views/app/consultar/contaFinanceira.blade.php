@@ -18,7 +18,7 @@
                         <tr>
                             <td class="fs-6">{{$conta->name}}</td>
                             <td class="fs-6 d-flex justify-content-center">
-                                <button class="far fa-edit mx-2" data-bs-toggle="modal" data-bs-target="#modalEditarConta{{$conta->id}}">
+                                <button class="far fa-edit mx-2 text-success acoes" data-bs-toggle="modal" data-bs-target="#modalEditarConta{{$conta->id}}">
                                 </button>
                                 @include('app.consultar.modal-editar-conta')
 
@@ -28,10 +28,10 @@
                                     @method('delete')
                                     <input type="hidden" name="user" value="{{$conta->id}}">
                                     @if($conta->deletavel)
-                                        <button type="button" class="fas fa-trash" type="submit" value="" data-bs-toggle="modal" data-bs-target="#modalDeletar{{$conta->id}}">
+                                        <button type="button" class="fas fa-trash text-danger acoes" type="submit" value="" data-bs-toggle="modal" data-bs-target="#modalDeletar{{$conta->id}}">
                                         </button>
                                     @else
-                                        <button type="button" class="fas fa-trash delete" type="submit" value="" disabled="disabled">
+                                        <button type="button" class="fas fa-trash delete text-danger text-opacity-50" type="submit" value="" disabled="disabled">
                                         </button>
                                     @endif
                                     @component('components.modal-deletar', ['id' => $conta->id])

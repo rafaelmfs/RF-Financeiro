@@ -30,7 +30,27 @@
                                 <td class="">R$ {{$movimentacao->value}}</td>
                                 <td class="">{{$movimentacao->date}}</td>
                                 <td class="{{$movimentacao->state}}">{{ucwords($movimentacao->state)}}</td>
-                                <td class="">s</td>
+                                <td class="">
+                                    <div class="fs-6 d-flex justify-content-center">
+                                        <button class="fas fa-exclamation-circle mx-2 text-info acoes">
+                                            <a href=""></a>
+                                        </button>
+
+                                        <button class="far fa-edit mx-2 text-success acoes" data-bs-toggle="modal" data-bs-target="#modalEditarConta">
+                                        </button>
+
+                                        <form class="mx-2" action="" method='post'>
+                                            @csrf
+                                            @method('delete')
+                                            <input type="hidden" name="user" value="">
+                                            <button type="button" class="fas fa-trash text-danger acoes" type="submit" value="" data-bs-toggle="modal" data-bs-target="#modalDeletar">
+                                            </button>
+                                            @component('components.modal-deletar', ['id' => 1])
+                                            @endcomponent
+
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                     </table>
