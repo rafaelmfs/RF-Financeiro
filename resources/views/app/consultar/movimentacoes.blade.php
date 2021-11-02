@@ -28,7 +28,15 @@
                                 <td class="">{{$movimentacao->category}}</td>
                                 <td class="">{{$movimentacao->financial_account}}</td>
                                 <td class="">R$ {{number_format($movimentacao->value, 2, ',', '.')}}</td>
-                                <td class="">{{$movimentacao->date}}</td>
+                                <td class="">
+                                    @if (!empty($movimentacao->date))
+                                        @php
+                                            $vencimento = strtotime($movimentacao->date);
+                                            $vencimento = date('d-m-Y', $vencimento);
+                                        @endphp
+                                        {{str_replace('-', '/', strval($vencimento))}}
+                                    @endif
+                                </td>
                                 <td class="{{$movimentacao->state}}">{{ucwords($movimentacao->state)}}</td>
                                 <td class="">
                                     <div class="fs-6 d-flex justify-content-center">

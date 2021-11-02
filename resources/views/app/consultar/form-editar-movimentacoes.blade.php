@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="nome" class="form-label">Nome:</label>
-                        <input type="text" class="form-control required-field" id="" name="nome" value="{{$movimentacao->name}}">
+                        <input type="text" maxlength="25" class="form-control required-field" id="" name="nome" value="{{$movimentacao->name}}">
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="tipo" class="form-label">Tipo:</label>
@@ -55,7 +55,7 @@
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="valueTransaction" class="form-label">Valor:</label>
-                        <input type="number" min="0" step="0.01" class="form-control required-field" id="" name="valorMovimentacao" value="{{$movimentacao->value}}" required>
+                        <input type="number" min="0.00" step="0.01" class="form-control required-field" id="" name="valorMovimentacao" value="{{$movimentacao->value}}" required>
 
                     </div>
                     <div class="mb-3 col-md-6">

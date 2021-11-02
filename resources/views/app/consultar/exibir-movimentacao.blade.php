@@ -20,8 +20,12 @@
                         </div>
                         <div class="d-flex">
                             <h4>Data de vencimento:</h4>
-                            @if(!empty($movimentacao->date))
-                                <p class="fs-5 px-2 text-muted">{{$movimentacao->date}}</p>
+                            @if (!empty($movimentacao->date))
+                                @php
+                                    $vencimento = strtotime($movimentacao->date);
+                                    $vencimento = date('d-m-Y', $vencimento);
+                                @endphp
+                                <p class="fs-5 px-2 text-muted"> {{str_replace('-', '/', strval($vencimento))}}</p>
                             @else
                                 <p class="fs-5 px-2 text-muted"> - </p>
                             @endif
@@ -44,11 +48,21 @@
                     </div>
                     <div class="d-flex">
                         <h4>Data de criação:</h4>
-                        <p class="fs-5 px-2 text-muted">{{$movimentacao->created_at}}</p>
+                        @php
+                            $criacao = strtotime($movimentacao->created_at);
+                            $criacao = date('d-m-Y * H:i', $criacao);
+                            $criacao = str_replace('-', '/', strval($criacao))
+                        @endphp
+                        <p class="fs-5 px-2 text-muted"> {{str_replace('*', 'às', strval($criacao))}}</p>
                     </div>
                     <div class="d-flex">
                         <h4>Data da ultima atualização: </h4>
-                        <p class="fs-5 px-2 text-muted">{{$movimentacao->updated_at}}</p>
+                        @php
+                            $atualizacao = strtotime($movimentacao->updated_at);
+                            $atualizacao = date('d-m-Y * H:i', $atualizacao);
+                            $atualizacao = str_replace('-', '/', strval($atualizacao))
+                        @endphp
+                        <p class="fs-5 px-2 text-muted"> {{str_replace('*', 'às', strval($atualizacao))}}</p>
                     </div>
                     <h4>Descrição: </h4>
                     <div class="rounded-3 border border-light descricao p-2">
