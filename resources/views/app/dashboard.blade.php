@@ -30,7 +30,7 @@
                     @endif
                     <h2>
                         <span>R$</span>
-                        {{str_replace('.', ',', $creditoValor)}}
+                        {{number_format($creditoValor, 2, ',', '.')}}
                     </h2>
                 </div>
                 <div class ="info-imagem">
@@ -49,7 +49,8 @@
                     @endif
                     <h2>
                         <span>R$</span>
-                        {{str_replace('.', ',', $debitoValor)}}
+                        {{number_format($debitoValor, 2, ',', '.')}}
+
                     </h2>
                 </div>
                 <div class ="info-imagem">
@@ -68,7 +69,8 @@
                     @endif
                     <h2>
                         <span>R$</span>
-                        {{str_replace('.', ',', $total)}}
+                        {{number_format($total, 2, ',', '.')}}
+
                     </h2>
                 </div>
                 <div class ="info-imagem">

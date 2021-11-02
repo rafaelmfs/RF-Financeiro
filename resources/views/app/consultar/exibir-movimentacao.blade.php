@@ -34,7 +34,8 @@
                         </div>
                         <div class="d-flex">
                             <h4>Valor:</h4>
-                            <p class="fs-5 px-2 text-muted">{{$movimentacao->value}}</p>
+
+                            <p class="fs-5 px-2 text-muted">R$ {{number_format($movimentacao->value, 2, ',', '.')}}</p>
                         </div>
                         <div class="d-flex">
                             <h4>Status:</h4>

@@ -27,7 +27,7 @@
                                 <td class="">{{$movimentacao->type_movement}}</td></th>
                                 <td class="">{{$movimentacao->category}}</td>
                                 <td class="">{{$movimentacao->financial_account}}</td>
-                                <td class="">R$ {{$movimentacao->value}}</td>
+                                <td class="">R$ {{number_format($movimentacao->value, 2, ',', '.')}}</td>
                                 <td class="">{{$movimentacao->date}}</td>
                                 <td class="{{$movimentacao->state}}">{{ucwords($movimentacao->state)}}</td>
                                 <td class="">
@@ -62,15 +62,15 @@
                 <div class="col col-6 my-4">
                     <div class="d-flex justify-content-between text-success">
                         <p class="fst-italic m-0 margin-none">Total de Crédito</p>
-                        <p class="fw-bold margin-none">R$ {{$credito}}</p>
+                        <p class="fw-bold margin-none">R$ {{number_format($credito, 2, ',', '.')}}</p>
                     </div>
                     <div class="d-flex justify-content-between text-danger">
                        <p class="fst-italic  margin-none">Total de Débito</p>
-                       <p class="fw-bold margin-none">R$ -{{$debito}}</p>
+                       <p class="fw-bold margin-none">R$ - {{number_format($debito, 2, ',', '.')}}</p>
                     </div>
                     <div class="d-flex justify-content-between text-primary">
                         <p class="fst-italic  margin-none">Valor Total</p>
-                        <p class="fw-bold margin-none">R$ {{$total}}</p>
+                        <p class="fw-bold margin-none">R$ {{number_format($total, 2, ',', '.')}}</p>
 
                     </div>
                 </div>

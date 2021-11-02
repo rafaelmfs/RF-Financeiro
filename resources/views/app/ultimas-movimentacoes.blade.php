@@ -20,7 +20,8 @@
                     <td>{{$movimentacoes[$cont]->name}}</td>
                     <td>{{$movimentacoes[$cont]->category}}</td>
                     <td>{{$movimentacoes[$cont]->financial_account}}</td>
-                    <td>R$ {{str_replace('.', ',', strval($movimentacoes[$cont]->value) )}}</td>
+                    {{-- <td>R$ {{str_replace('.', ',', strval() )}}</td> --}}
+                    <td>R$ {{number_format($movimentacoes[$cont]->value, 2, ',', '.')}}</td>
                     <td>{{($movimentacoes[$cont]->type_movement)}}</td>
                 </tr>
             @endfor
