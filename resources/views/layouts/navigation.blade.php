@@ -23,25 +23,25 @@
         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
             <div class="sidebar-menu">
                 <span class="fas fa-chart-line"></span>
-                    {{ __('Dashboard') }}
+                <p>{{ __('Dashboard') }}</p>
             </div>
         </x-nav-link>
         <x-nav-link :href="route('adicionar')" :active="request()->routeIs('adicionar')">
             <div class="sidebar-menu">
                 <span class="fas fa-plus"></span>
-                {{ __('Adicionar') }}
+                <p>{{ __('Adicionar') }}</p>
             </div>
         </x-nav-link>
         <x-nav-link :href="route('consultar')" :active="request()->routeIs('consultar')">
             <div class="sidebar-menu">
                 <span class="fas fa-list-alt"></span>
-                    {{ __('Consultar') }}
+                <p>{{ __('Consultar') }}</p>
             </div>
         </x-nav-link>
         <x-nav-link {{-- :href="route('dashboard')" :active="request()->routeIs('dashboard')" --}}>
             <div class="sidebar-menu">
                 <span class="fas fa-file-alt"></span>
-                    {{ __('Relatório') }}
+                <p>{{ __('Relatório') }}</p>
             </div>
         </x-nav-link>
     </div>

@@ -88,6 +88,10 @@
     padding-right: 30px;
 }
 
+.sidebar-menu p{
+    margin: 0;
+}
+
 
 
 .sidebar-menu:hover {
@@ -102,6 +106,7 @@
 #toggle:checked ~ .sidebar .sidebar-menu > p
 {
     display: none;
+
 }
 
 #toggle:checked ~ main {

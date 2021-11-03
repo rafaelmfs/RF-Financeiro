@@ -10,7 +10,7 @@
                 <h1 class="display-5">Por que criar uma conta financeira ?</h1>
                 <p class="fs-5 fw-light text-muted p-3">Com uma conta financeira você pode separar suas movimentações em grupos, por exemplo,
                 se você quiser cadastrar desepesas relacionadas somente a casa, carro ou até mesmo alguma renda de um serviço específico,
-                nesse caso poderia criar uma conta financeir e assim poderá filtrar somente o que tem cadastrado nessa conta.</p>
+                nesse caso poderia criar uma conta financeira e assim poderá filtrar somente o que tem cadastrado nessa conta.</p>
             </div>
         </div>
         <div class="container-fluid border py-5 px-4 mb-4 rounded-3">
