@@ -26,7 +26,9 @@ class FinancialTransation extends Model
 
         $totais = 0;
         foreach($movimentacoes as $movimentacao){
-            $totais += $movimentacao->value;
+            if($movimentacao->state == 'confirmado'){
+                $totais += $movimentacao->value;
+            }
         }
 
         return $totais;
