@@ -29,6 +29,9 @@ class UserController extends Controller
         $quantidadeCredito = count($movimentacoes->where('user', $user->id)->where('type_movement', 1)->get());
         $quantidadeDebito = count($movimentacoes->where('user', $user->id)->where('type_movement', 2)->get());
         $ultimasMovimentacoes = $movimentacoes->movimentacoesFormatadas($user);
+        $pendentes = FinancialTransation::where([
+            ['user', $user->id],
+            ['state', "pendente"],])->get();
 
         return view('app.dashboard', [
             'user' => $user,
@@ -37,7 +40,8 @@ class UserController extends Controller
             'debitoValor' => $valorDebito,
             'debitoTotal' => $quantidadeDebito,
             'total' => ($valorCredito - $valorDebito),
-            'movimentacoes' => $ultimasMovimentacoes
+            'movimentacoes' => $ultimasMovimentacoes,
+            'pendentes' => count($pendentes)
         ]);
     }
     /**

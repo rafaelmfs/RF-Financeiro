@@ -68,18 +68,18 @@
                     </table>
                 </div>
                 <div class="col col-6 my-4">
+
                     <div class="d-flex justify-content-between text-success">
-                        <p class="fst-italic m-0 margin-none">Total de Entradas</p>
+                        <p class="fst-italic m-0 margin-none">Valor Total de Entradas Confirmadas</p>
                         <p class="fw-bold margin-none">R$ {{number_format($credito, 2, ',', '.')}}</p>
                     </div>
                     <div class="d-flex justify-content-between text-danger">
-                       <p class="fst-italic  margin-none">Total de Saídas</p>
+                       <p class="fst-italic  margin-none">Valor Total de Saídas Confirmadas</p>
                        <p class="fw-bold margin-none">R$ - {{number_format($debito, 2, ',', '.')}}</p>
                     </div>
                     <div class="d-flex justify-content-between text-primary">
-                        <p class="fst-italic  margin-none">Valor Total</p>
+                        <p class="fst-italic  margin-none">Valor Total de movimentações confirmadas</p>
                         <p class="fw-bold margin-none">R$ {{number_format($total, 2, ',', '.')}}</p>
-
                     </div>
                 </div>
 

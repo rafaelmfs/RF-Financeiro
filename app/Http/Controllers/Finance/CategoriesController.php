@@ -13,16 +13,12 @@ class CategoriesController extends Controller
 {
     //
     public function inserir(){
-        $tipo = TypeMovements::all();
-        return view('app.adicionar.adicionarCategoria', [
-            'tipos' => $tipo
-        ]);
+        return view('app.adicionar.adicionarCategoria');
     }
 
     public function salvar(Request $request){
         $categoria = New Category();
         try{
-            $categoria->typeMovement = $request->tipo;
             $categoria->user = Auth::user()->id;
             $categoria->name = ucwords(mb_strtolower($request->nome, $encoding = mb_internal_encoding()));
             $categoria->save();
@@ -39,13 +35,11 @@ class CategoriesController extends Controller
         $user = Auth::user();
         $categoriaFormatada = new Category();
         $categoria = Category::where('user', $user->id)->get();
-        $tipo = TypeMovements::all();
 
         $categorias = $categoriaFormatada->deletavel($categoria);
 
         return view("app.consultar.categorias", [
-            'categorias' => $categoriaFormatada->formatarNomeTipo($categorias),
-            'tipos' => $tipo
+            'categorias' => $categorias
         ]);
 
     }
@@ -53,9 +47,6 @@ class CategoriesController extends Controller
     public function editar(Category $categoria, Request $request){
             if(!empty($request->nome)){
                 $categoria->name = $request->nome;
-            }
-            if(!empty($request->tipo)){
-                $categoria->typeMovement = $request->tipo;
             }
             $categoria->save();
 

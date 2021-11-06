@@ -12,13 +12,11 @@
                 <table class="table">
                     <tr>
                         <th class="fs-4 table-head">Nome</th>
-                        <th class="fs-4 table-head">Tipo</th>
                         <th class="fs-4 table-head">Ações</th>
                     </tr>
                     @foreach ($categorias as $i => $categoria)
                         <tr>
                             <td class="fs-6">{{$categoria->name}}</td>
-                            <td class="fs-6">{{$categoria->typeMovement}}</td>
                             <td class="fs-6 d-flex justify-content-center">
                                 <button class="far fa-edit mx-2 text-success acoes" data-bs-toggle="modal" data-bs-target="#modalCategoria{{$categoria->id}}">
                                 </button>

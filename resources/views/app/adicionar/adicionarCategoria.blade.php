@@ -20,15 +20,6 @@
                     <label for="nome" class="form-label align-baseline col-1 py-1">Nome:</label>
                     <input type="text" class="form-control col" id="" name="nome" placeholder="Digite o nome de uma categoria" required>
                 </div>
-                <div class="mb-3 row p-2">
-                    <label for="tipo" class="form-label col-1 py-1">Tipo:</label>
-                    <select class="form-select col" name="tipo" required>
-                        <option value="" selected invalid>Escolha Crédito ou Débito</option>
-                        @foreach ($tipos as $tipo)
-                            <option value={{$tipo->id}}>{{ucwords($tipo->name)}}</option>
-                        @endforeach
-                    </select>
-                </div>
                 <div class="d-flex justify-content-between">
                     <a href="javascript:history.back()" class="btn btn-outline-secondary px-5 me-2">Voltar </a>
                     <button type="submit" class="btn btn-success px-5 ms-2">Salvar</button>

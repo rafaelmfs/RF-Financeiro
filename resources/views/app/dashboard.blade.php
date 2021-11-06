@@ -89,7 +89,20 @@
                     </div>
             </div>
         </div>
+
+
     </div>
+    @if(!empty($pendentes))
+        <div class="d-flex alerta bg-warning rounded p-2 text-black-50 fw-bold">
+            <i class="fs-5 fas fa-exclamation-triangle me-2"></i>Atenção, você tem {{$pendentes}}  movimentações pendentes.
+            <form class="ms-2" method="post"  target="_blank" action="{{ route('movimentacoes.listar') }}">
+                @csrf
+                <input type="hidden" name="state" value="pendente">
+
+                <button>Clique aqui para visualizá-las.</button>
+            </form>
+        </div>
+    @endif
 
     @include('app.ultimas-movimentacoes')
 

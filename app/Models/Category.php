@@ -11,18 +11,6 @@ class Category extends Model
     use HasFactory;
     protected $table = 'categories';
 
-    public function formatarNomeTipo($categorias){
-
-        foreach($categorias as $categoria){
-            if($categoria->typeMovement == 1){
-                $categoria->typeMovement= "Crédito";
-            }else if($categoria->typeMovement == 2){
-                $categoria->typeMovement = "Débito";
-            }
-        }
-        return $categorias;
-    }
-
     public function deletavel($categorias){
 
         foreach($categorias as $categoria){
@@ -34,10 +22,6 @@ class Category extends Model
             }
         }
         return $categorias;
-    }
-
-    public function typeMovement(){
-        return $this->belongsTo(TypeMovements::class, 'id', 'typeMovement');
     }
 
 }

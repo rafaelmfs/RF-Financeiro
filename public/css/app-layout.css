@@ -129,12 +129,18 @@
     gap: 1rem;
     grid-template-areas:
         "total1 total2 total3 total4 total4"
+        "alerta alerta alerta alerta alerta"
         "detail detail detail detail detail";
 }
 
 .dash-card{
     padding: 1rem;
     border-radius: 5px;
+}
+
+.alerta{
+    grid-area: alerta;
+    width: 100%;
 }
 
 .total1 {

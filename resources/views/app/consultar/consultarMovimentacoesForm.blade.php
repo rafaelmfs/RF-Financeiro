@@ -38,15 +38,29 @@
                         </select>
                     </div>
                 </div>
-                <label class="">Período:</label>
-                <div class="d-flex justify-content-between mb-2">
-                    <div name="timeCourse" class="d-flex">
-                        <input type="date" class="form-control" name="start">
-                        <span class="p-2">-</span>
-                        <input type="date" class="form-control" name="end">
+                <div class="row">
+                    <div class="col col-5">
+                        <label class="">Período:</label>
+                        <div class="d-flex justify-content-between mb-2">
+                            <div name="timeCourse" class="d-flex">
+                                <input type="date" class="form-control" name="start">
+                                <span class="p-2">-</span>
+                                <input type="date" class="form-control" name="end">
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn btn-primary ms-2" ><i class="fas fa-search"></i></button>
-                 </div>
+                    <div class="col col-md-7">
+                        <label class="">Status:</label>
+                        <div class="d-flex justify-content-between mb-2">
+                            <select class="form-select required-field" name="state">
+                                <option value="" selected></option>
+                                <option value="confirmado">Confirmado</option>
+                                <option value="pendente">Pendente</option>
+                            </select>
+                            <button class="btn btn-primary ms-5" ><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
             </form>
 
         </div>
