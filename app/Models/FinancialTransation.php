@@ -10,18 +10,6 @@ class FinancialTransation extends Model
     use HasFactory;
     protected $table = 'financial_transactions';
 
-
-    // public function valueTotal($type, $id){
-    //     $transactions = FinancialTransation::where('type_movement', $type)->where('user', $id)->get();
-    //     $totals = 0;
-    //     foreach($transactions as $transaction){
-    //         $totals += $transaction->value;
-    //     }
-
-    //     return $totals;
-
-    // }
-
     public function valorTotal($movimentacoes){
 
         $totais = 0;

@@ -38,7 +38,7 @@
                 <p>{{ __('Consultar') }}</p>
             </div>
         </x-nav-link>
-        <x-nav-link {{-- :href="route('dashboard')" :active="request()->routeIs('dashboard')" --}}>
+        <x-nav-link :href="route('relatorios')" :active="request()->routeIs('relatorios')">
             <div class="sidebar-menu">
                 <span class="fas fa-file-alt"></span>
                 <p>{{ __('Relatório') }}</p>

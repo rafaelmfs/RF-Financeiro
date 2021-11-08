@@ -4,6 +4,7 @@ use App\Http\Controllers\Finance\CategoriesController;
 use App\Http\Controllers\Finance\FinancialAccountController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Finance\FinancialTransactionController;
+use App\Http\Controllers\Finance\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,16 @@ Route::get('/contas.listar', [FinancialAccountController::class, 'listar'])->mid
 Route::get('/movimentacoes.listar', [FinancialTransactionController::class, 'consultar'])->middleware(['auth'])->name('movimentacoes.listar');
 Route::get('/movimentaco.editar', [FinancialTransactionController::class, 'formEditar'])->middleware(['auth'])->name('editarForm.movimentacao');
 Route::get('/movimentaco.exibir/{movimentacao}', [FinancialTransactionController::class, 'exibir'])->middleware(['auth'])->name('exibir.movimentacao');
-Route::get('/relatorio', [FinancialTransactionController::class, 'report'])->middleware(['auth'])->name('relatorio');
+Route::get('/relatorio', [ReportController::class, 'relatorios'])->middleware(['auth'])->name('relatorios');
+Route::get('/relatorio/categorias', /*[ReportController::class, 'relatorios']*/ function(){
+    return view('app.relatorio.categorias');
+})->middleware(['auth'])->name('relatorio.categorias');
+Route::get('/relatorio/conta-financeira', /*[ReportController::class, 'relatorios']*/ function(){
+    return view('app.relatorio.conta');
+})->middleware(['auth'])->name('relatorio.conta');
+Route::get('/relatorio/movimentacoes', /*[ReportController::class, 'relatorios']*/ function(){
+    return view('app.relatorio.movimentacoes');
+})->middleware(['auth'])->name('relatorio.movimentacoes');
 
 
 //Post
