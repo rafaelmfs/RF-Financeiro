@@ -36,14 +36,10 @@ Route::get('/movimentacoes.listar', [FinancialTransactionController::class, 'con
 Route::get('/movimentaco.editar', [FinancialTransactionController::class, 'formEditar'])->middleware(['auth'])->name('editarForm.movimentacao');
 Route::get('/movimentaco.exibir/{movimentacao}', [FinancialTransactionController::class, 'exibir'])->middleware(['auth'])->name('exibir.movimentacao');
 Route::get('/relatorio', [ReportController::class, 'relatorios'])->middleware(['auth'])->name('relatorios');
-Route::get('/relatorio/categorias', /*[ReportController::class, 'relatorios']*/ function(){
-    return view('app.relatorio.categorias');
-})->middleware(['auth'])->name('relatorio.categorias');
-Route::get('/relatorio/conta-financeira', /*[ReportController::class, 'relatorios']*/ function(){
-    return view('app.relatorio.conta');
-})->middleware(['auth'])->name('relatorio.conta');
-Route::get('/relatorio/movimentacoes', /*[ReportController::class, 'relatorios']*/ function(){
-    return view('app.relatorio.movimentacoes');
+Route::get('/relatorio/categorias', [ReportController::class, 'categorias'])->middleware(['auth'])->name('relatorio.categorias');
+Route::get('/relatorio/conta-financeira', [ReportController::class, 'contas'])->middleware(['auth'])->name('relatorio.conta');
+Route::get('/relatorio/movimentacoes', function(){
+    return view('app.relatorio.movimentacoes-periodo');
 })->middleware(['auth'])->name('relatorio.movimentacoes');
 
 
@@ -52,6 +48,7 @@ Route::post('/adicionar/salvar', [FinancialTransactionController::class, 'salvar
 Route::post('adicionar/conta/salvar', [FinancialAccountController::class, 'salvar'])->middleware(['auth'])->name('salvar.conta-financeira');
 Route::post('adicionar/categorias/salvar', [CategoriesController::class, 'salvar'])->middleware(['auth'])->name('salvar.categoria');
 Route::post('/movimentacoes.listar', [FinancialTransactionController::class, 'consultarFiltro'])->middleware(['auth'])->name('movimentacoes.listar');
+Route::post('/relatorio/movimentacoes', [ReportController::class, 'movimentacoes'])->middleware(['auth'])->name('exibir.relatorio.movimentacoes');
 
 //Put
 Route::put('/editar/categoria/{categoria}', [CategoriesController::class, 'editar'])->middleware(['auth'])->name('editar.categoria');

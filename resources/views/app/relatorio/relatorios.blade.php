@@ -22,7 +22,7 @@
                     </a>
                 </div>
                 <div class="d-flex my-4">
-                    <a href="{{ route('relatorio.movimentacoes') }}" class="link-success lead text-decoration-none fs-3" target="_blank">
+                    <a href="{{ route('relatorio.movimentacoes') }}" class="link-success lead text-decoration-none fs-3">
                         <i class="fas fa-coins"></i>
                         Relatório de Movimentações
                     </a>
