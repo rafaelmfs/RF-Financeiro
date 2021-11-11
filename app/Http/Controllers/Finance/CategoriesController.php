@@ -37,13 +37,18 @@ class CategoriesController extends Controller
         //
         $user = Auth::user();
         $categoriaFormatada = new Category();
-        $categoria = Category::where('user', $user->id)->get();
+        try{
+            $categoria = Category::where('user', $user->id)->get();
 
-        $categorias = $categoriaFormatada->deletavel($categoria);
+            $categorias = $categoriaFormatada->deletavel($categoria);
 
-        return view("app.consultar.categorias", [
-            'categorias' => $categorias
-        ]);
+            return view("app.consultar.categorias", [
+                'categorias' => $categorias
+            ]);
+
+        }catch(Exception $err){
+            return view('app.error');
+        }
 
     }
 
@@ -62,9 +67,13 @@ class CategoriesController extends Controller
     }
 
     public function apagar(Category $categoria){
-        $categoria->delete();
+        try{
+            $categoria->delete();
+            return redirect()->route('categorias.listar');
 
-        return redirect()->route('categorias.listar');
+        }catch(Exception $err){
+            return view('app.error');
+        }
 
     }
 }

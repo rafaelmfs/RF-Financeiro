@@ -38,29 +38,43 @@ class FinancialAccountController extends Controller
 
     public function listar(){
         $user = Auth::user();
-        $contaFinanceira = FinancialAccount::where('user', $user->id)->get();
-        $contas = new FinancialAccount();
-        $contas = $contas->deletavel($contaFinanceira);
+        try{
+            $contaFinanceira = FinancialAccount::where('user', $user->id)->get();
+            $contas = new FinancialAccount();
+            $contas = $contas->deletavel($contaFinanceira);
 
-        return view('app.consultar.contaFinanceira', [
-            'contas' => $contas
-        ]);
+            return view('app.consultar.contaFinanceira', [
+                'contas' => $contas
+            ]);
+
+        }catch(Exception $err){
+            return view('app.error');
+        }
     }
 
     public function editar(FinancialAccount $conta, Request $request){
-        if(!empty($request->name)){
-            $conta->name = $request->name;
-            $conta->save();
-        }
+        try{
+            if(!empty($request->name)){
+                $conta->name = $request->name;
+                $conta->save();
+            }
 
-        return redirect()->route('contas.listar');
+            return redirect()->route('contas.listar');
+
+        }catch(Exception $err){
+            return view('app.error');
+        }
     }
 
 
     public function apagar(FinancialAccount $conta){
-        $conta->delete();
+        try{
+            $conta->delete();
+            return redirect()->route('contas.listar');
 
-        return redirect()->route('contas.listar');
+        }catch(Exception $err){
+            return view('app.error');
+        }
 
     }
 }

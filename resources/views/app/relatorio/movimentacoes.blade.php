@@ -56,7 +56,7 @@
 </div>
 
  <div class="d-flex p-2 my-4 valores">
-        <i class="fas fa-exclamation-circle p-1 text-warning"></i> <p class="px-1"><b>Atenção</b>, os calculos de valores gerais só são feitos baseado nas movimentações que estão confirmadas.</p>
+        <i class="fas fa-exclamation-circle p-1 text-warning"></i> <p class="px-1"><b>Atenção</b>, os calculos de valores gerais são baseados nas movimentações que estão com status confirmado.</p>
 </div>
 
 @include('app.relatorio.rodape')
