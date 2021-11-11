@@ -46,6 +46,7 @@ class FinancialTransactionController extends Controller
             return  $this->exibir($movimentacao->id);
         }catch(Exception $err){
             //
+            return view('app.error');
         }
     }
 
@@ -232,7 +233,7 @@ class FinancialTransactionController extends Controller
             return  $this->exibir($movimentacao->id);
 
         }catch(Exception $err){
-            dd($err);
+            return view('app.error');
         }
 
     }

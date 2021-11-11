@@ -322,14 +322,6 @@ div.card{
 
 }
 
-.text-error{
-    display: none;
-}
-
-.error{
-    border: 1px solid red;
-    animation: balance 500ms;
-}
 
 .margin-none{
     margin: 0;
@@ -383,6 +375,34 @@ p.active::after{
     width: 100%;
 
 }
+.error h1, .error i{
+    color: rgb(211, 8, 8);
+}
+
+.error i{
+    font-size: 8rem;
+}
+
+.error p{
+    margin: 0;
+}
+
+.error a{
+    width: 240px;
+    padding: 16px 8px;
+
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    background-color: rgb(212, 33, 33);
+}
+
+.error a:hover{
+    color: rgba(255, 255, 255, 0.603);
+    background-color: rgb(211, 8, 8);
+}
+
+
 
 @media screen and (max-width: 980px) {
     .dashboard-container {

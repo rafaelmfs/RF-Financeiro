@@ -19,15 +19,18 @@ class FinancialAccountController extends Controller
     public function salvar(Request $request){
         $conta = new FinancialAccount();
         try{
-            $conta->user = Auth::user()->id;
-            $conta->name = ucwords(mb_strtolower($request->name, $encoding = mb_internal_encoding()));
+            if(!empty($request->name)){
+                $conta->user = Auth::user()->id;
+                $conta->name = ucwords(mb_strtolower($request->name, $encoding = mb_internal_encoding()));
 
-            $conta->save();
+                $conta->save();
+            }
 
             return redirect()->route('adicionar.conta');
 
         }catch(Exception $err){
-            //
+            return view('app.error');
+
         }
 
 

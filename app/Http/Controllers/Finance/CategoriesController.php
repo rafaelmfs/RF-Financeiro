@@ -19,14 +19,17 @@ class CategoriesController extends Controller
     public function salvar(Request $request){
         $categoria = New Category();
         try{
-            $categoria->user = Auth::user()->id;
-            $categoria->name = ucwords(mb_strtolower($request->nome, $encoding = mb_internal_encoding()));
-            $categoria->save();
+            if(!empty($request->name)){
+                $categoria->user = Auth::user()->id;
+                $categoria->name = ucwords(mb_strtolower($request->nome, $encoding = mb_internal_encoding()));
+                $categoria->save();
+            }
 
             return redirect()->route('adicionar.categoria');
 
         }catch(Exception $err){
-            dd($err);
+            return view('app.error');
+
         }
     }
 
@@ -45,12 +48,17 @@ class CategoriesController extends Controller
     }
 
     public function editar(Category $categoria, Request $request){
+        try{
             if(!empty($request->nome)){
                 $categoria->name = $request->nome;
             }
             $categoria->save();
 
-        return redirect()->route('categorias.listar');
+            return redirect()->route('categorias.listar');
+
+        }catch(Exception $err){
+            return view('app.error');
+        }
     }
 
     public function apagar(Category $categoria){
