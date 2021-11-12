@@ -24,9 +24,11 @@
     @include('site.carousel')
     @include('site.content')
 
+
     <footer class="container">
         <p class="float-right"><a href="#"><ion-icon name="arrow-up-outline"></ion-icon></a></p>
-        <p>&copy; {{date("Y")}} RF Financeiro &middot; <a href="#">Politica de Privacidade</a> &middot;</p>
+        <p>&copy; {{date("Y")}} RF Financeiro &middot; <a type="button" class="link-primary" data-bs-toggle="modal" data-bs-target="#politica-privacidade">Politica de Privacidade</a> &middot;</p>
+        @include('site.politica-privacidade')
     </footer>
 
 
