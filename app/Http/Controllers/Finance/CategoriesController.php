@@ -19,11 +19,9 @@ class CategoriesController extends Controller
     public function salvar(Request $request){
         $categoria = New Category();
         try{
-            if(!empty($request->name)){
                 $categoria->user = Auth::user()->id;
                 $categoria->name = ucwords(mb_strtolower($request->nome, $encoding = mb_internal_encoding()));
                 $categoria->save();
-            }
 
             return redirect()->route('adicionar.categoria');
 
