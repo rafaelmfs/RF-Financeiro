@@ -1,3 +1,4 @@
+
 .top-bar{
     height: 2%;
     background: rgba(0, 0, 0, 0.74);
@@ -16,7 +17,7 @@
 
 .login-links a, .top-bar a{
     text-decoration: none;
-    /* padding: 6px 12px; */
+
 }
 
 .login-links a:link, .login-links a:visited, .top-bar a:link, .top-bar a:visited{
